@@ -14,6 +14,16 @@
 		046D426B1E9DCDC800624E77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046D42691E9DCDC800624E77 /* LaunchScreen.storyboard */; };
 		046D42761E9DCDC800624E77 /* SoupReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42751E9DCDC800624E77 /* SoupReaderTests.swift */; };
 		046D42811E9DCDC800624E77 /* SoupReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42801E9DCDC800624E77 /* SoupReaderUITests.swift */; };
+		046D42911E9DCFE800624E77 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42901E9DCFE800624E77 /* HttpClient.swift */; };
+		046D42941E9DD26D00624E77 /* Blog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046D42931E9DD26D00624E77 /* Blog.storyboard */; };
+		046D42961E9DD28D00624E77 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046D42951E9DD28D00624E77 /* Discover.storyboard */; };
+		046D429C1E9DD5F700624E77 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D429B1E9DD5F700624E77 /* ViewControllerExtension.swift */; };
+		046D429E1E9DD65D00624E77 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D429D1E9DD65D00624E77 /* StringExtension.swift */; };
+		046D42A31E9E052700624E77 /* TagBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42A21E9E052700624E77 /* TagBean.swift */; };
+		046D42A81E9E0EB300624E77 /* BlogMainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42A71E9E0EB300624E77 /* BlogMainTableViewController.swift */; };
+		046D42AB1E9E101700624E77 /* BlogMainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42AA1E9E101700624E77 /* BlogMainTableViewCell.swift */; };
+		046D42AD1E9E116700624E77 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42AC1E9E116700624E77 /* MainViewController.swift */; };
+		954FE5B9E6C717120F61F128 /* Pods_SoupReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 911F5F90788B3EB3A0677EC4 /* Pods_SoupReader.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +57,19 @@
 		046D427C1E9DCDC800624E77 /* SoupReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoupReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		046D42801E9DCDC800624E77 /* SoupReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoupReaderUITests.swift; sourceTree = "<group>"; };
 		046D42821E9DCDC800624E77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		046D428E1E9DCF3300624E77 /* OCHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCHeader.h; sourceTree = "<group>"; };
+		046D42901E9DCFE800624E77 /* HttpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
+		046D42931E9DD26D00624E77 /* Blog.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Blog.storyboard; sourceTree = "<group>"; };
+		046D42951E9DD28D00624E77 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
+		046D429B1E9DD5F700624E77 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		046D429D1E9DD65D00624E77 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		046D42A21E9E052700624E77 /* TagBean.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagBean.swift; sourceTree = "<group>"; };
+		046D42A71E9E0EB300624E77 /* BlogMainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogMainTableViewController.swift; sourceTree = "<group>"; };
+		046D42AA1E9E101700624E77 /* BlogMainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogMainTableViewCell.swift; sourceTree = "<group>"; };
+		046D42AC1E9E116700624E77 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		4F4498E3B7CD38B5BAA17598 /* Pods-SoupReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoupReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoupReader/Pods-SoupReader.debug.xcconfig"; sourceTree = "<group>"; };
+		911F5F90788B3EB3A0677EC4 /* Pods_SoupReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoupReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E329E4E24812A6BFD1D99A82 /* Pods-SoupReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoupReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoupReader/Pods-SoupReader.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				954FE5B9E6C717120F61F128 /* Pods_SoupReader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +105,8 @@
 				046D42741E9DCDC800624E77 /* SoupReaderTests */,
 				046D427F1E9DCDC800624E77 /* SoupReaderUITests */,
 				046D425E1E9DCDC800624E77 /* Products */,
+				EFFB0A0B78890E5AEA2E8DEE /* Pods */,
+				F94FD851C1EC98E719DE8BCE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +123,17 @@
 		046D425F1E9DCDC800624E77 /* SoupReader */ = {
 			isa = PBXGroup;
 			children = (
+				046D42A51E9E0E9A00624E77 /* ViewController */,
+				046D429F1E9E043C00624E77 /* Models */,
+				046D429A1E9DD5D400624E77 /* Extension */,
+				046D42921E9DD24C00624E77 /* Storyboard */,
+				046D428F1E9DCFCA00624E77 /* Networking */,
 				046D42601E9DCDC800624E77 /* AppDelegate.swift */,
 				046D42621E9DCDC800624E77 /* ViewController.swift */,
-				046D42641E9DCDC800624E77 /* Main.storyboard */,
 				046D42671E9DCDC800624E77 /* Assets.xcassets */,
 				046D42691E9DCDC800624E77 /* LaunchScreen.storyboard */,
 				046D426C1E9DCDC800624E77 /* Info.plist */,
+				046D428E1E9DCF3300624E77 /* OCHeader.h */,
 			);
 			path = SoupReader;
 			sourceTree = "<group>";
@@ -125,6 +156,84 @@
 			path = SoupReaderUITests;
 			sourceTree = "<group>";
 		};
+		046D428F1E9DCFCA00624E77 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				046D42901E9DCFE800624E77 /* HttpClient.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		046D42921E9DD24C00624E77 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				046D42641E9DCDC800624E77 /* Main.storyboard */,
+				046D42931E9DD26D00624E77 /* Blog.storyboard */,
+				046D42951E9DD28D00624E77 /* Discover.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		046D429A1E9DD5D400624E77 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				046D429B1E9DD5F700624E77 /* ViewControllerExtension.swift */,
+				046D429D1E9DD65D00624E77 /* StringExtension.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		046D429F1E9E043C00624E77 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				046D42A21E9E052700624E77 /* TagBean.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		046D42A51E9E0E9A00624E77 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				046D42A61E9E0EA200624E77 /* Blog */,
+				046D42AC1E9E116700624E77 /* MainViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		046D42A61E9E0EA200624E77 /* Blog */ = {
+			isa = PBXGroup;
+			children = (
+				046D42A91E9E100400624E77 /* Cell */,
+				046D42A71E9E0EB300624E77 /* BlogMainTableViewController.swift */,
+			);
+			name = Blog;
+			sourceTree = "<group>";
+		};
+		046D42A91E9E100400624E77 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				046D42AA1E9E101700624E77 /* BlogMainTableViewCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		EFFB0A0B78890E5AEA2E8DEE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4F4498E3B7CD38B5BAA17598 /* Pods-SoupReader.debug.xcconfig */,
+				E329E4E24812A6BFD1D99A82 /* Pods-SoupReader.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F94FD851C1EC98E719DE8BCE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				911F5F90788B3EB3A0677EC4 /* Pods_SoupReader.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +241,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 046D42851E9DCDC800624E77 /* Build configuration list for PBXNativeTarget "SoupReader" */;
 			buildPhases = (
+				655C3F166FAF5782411A5884 /* [CP] Check Pods Manifest.lock */,
 				046D42591E9DCDC800624E77 /* Sources */,
 				046D425A1E9DCDC800624E77 /* Frameworks */,
 				046D425B1E9DCDC800624E77 /* Resources */,
+				2DFC69B2F6CA0F92B184F7B9 /* [CP] Embed Pods Frameworks */,
+				D0B99B7D94B903C09A3CAC22 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -237,6 +349,8 @@
 			files = (
 				046D426B1E9DCDC800624E77 /* LaunchScreen.storyboard in Resources */,
 				046D42681E9DCDC800624E77 /* Assets.xcassets in Resources */,
+				046D42961E9DD28D00624E77 /* Discover.storyboard in Resources */,
+				046D42941E9DD26D00624E77 /* Blog.storyboard in Resources */,
 				046D42661E9DCDC800624E77 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,12 +371,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2DFC69B2F6CA0F92B184F7B9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SoupReader/Pods-SoupReader-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		655C3F166FAF5782411A5884 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D0B99B7D94B903C09A3CAC22 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SoupReader/Pods-SoupReader-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		046D42591E9DCDC800624E77 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				046D42A31E9E052700624E77 /* TagBean.swift in Sources */,
 				046D42631E9DCDC800624E77 /* ViewController.swift in Sources */,
+				046D42AB1E9E101700624E77 /* BlogMainTableViewCell.swift in Sources */,
+				046D42911E9DCFE800624E77 /* HttpClient.swift in Sources */,
+				046D429E1E9DD65D00624E77 /* StringExtension.swift in Sources */,
+				046D429C1E9DD5F700624E77 /* ViewControllerExtension.swift in Sources */,
+				046D42AD1E9E116700624E77 /* MainViewController.swift in Sources */,
+				046D42A81E9E0EB300624E77 /* BlogMainTableViewController.swift in Sources */,
 				046D42611E9DCDC800624E77 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +584,7 @@
 		};
 		046D42861E9DCDC800624E77 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F4498E3B7CD38B5BAA17598 /* Pods-SoupReader.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 56ZD4J8FQ5;
@@ -422,12 +592,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.soup.SoupReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = SoupReader/OCHeader.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		046D42871E9DCDC800624E77 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E329E4E24812A6BFD1D99A82 /* Pods-SoupReader.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 56ZD4J8FQ5;
@@ -435,6 +607,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.soup.SoupReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = SoupReader/OCHeader.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -516,6 +689,7 @@
 				046D42871E9DCDC800624E77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		046D42881E9DCDC800624E77 /* Build configuration list for PBXNativeTarget "SoupReaderTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +698,7 @@
 				046D428A1E9DCDC800624E77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		046D428B1E9DCDC800624E77 /* Build configuration list for PBXNativeTarget "SoupReaderUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +707,7 @@
 				046D428D1E9DCDC800624E77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
