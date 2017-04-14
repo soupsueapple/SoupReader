@@ -11,12 +11,14 @@ import AFNetworking
 
 class HttpClient: AFHTTPSessionManager {
     
-    public static let iOSURL: String = "https://feeds.pinboard.in/rss/u:soupsue/t:MyBlog"
+    public static let myBlogURL: String = "https://feeds.pinboard.in/rss/u:soupsue/t:MyBlog"
+    
+    public static let favoriteURL: String = "https://feeds.pinboard.in/rss/u:soupsue/t:favorite"
     
     func httpClientSetting() -> Void {
         self.securityPolicy = AFSecurityPolicy.init(pinningMode: .none)
         self.responseSerializer = AFHTTPResponseSerializer()
-        self.responseSerializer.acceptableContentTypes = ["text/html", "text/plain", "text/xml","application/json", "text/json", "text/javascript", "application/rss+xml"]
+        self.responseSerializer.acceptableContentTypes = ["text/html", "text/plain", "text/xml","application/json", "text/json", "text/javascript", "application/rss+xml", "image/png", "image/jepg"]
     }
     
     func httpError(error: Error?) -> Bool{

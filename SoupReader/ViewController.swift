@@ -27,7 +27,7 @@ class ViewController: UIViewController, XMLParserDelegate{
     }
     
     func doBlogXMLRequest() -> Void{
-        let httpClient = HttpClient(baseURL: URL(string: HttpClient.iOSURL))
+        let httpClient = HttpClient(baseURL: URL(string: HttpClient.myBlogURL))
         httpClient.httpClientSetting()
         httpClient.getRequest(url: "", paramters: nil, block: {(any: Any?, error: Error?) -> Void in
             

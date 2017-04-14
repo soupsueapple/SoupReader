@@ -23,6 +23,15 @@
 		046D42A81E9E0EB300624E77 /* BlogMainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42A71E9E0EB300624E77 /* BlogMainTableViewController.swift */; };
 		046D42AB1E9E101700624E77 /* BlogMainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42AA1E9E101700624E77 /* BlogMainTableViewCell.swift */; };
 		046D42AD1E9E116700624E77 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42AC1E9E116700624E77 /* MainViewController.swift */; };
+		046D42BF1E9E294D00624E77 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 046D42B91E9E294D00624E77 /* XPathQuery.m */; };
+		046D42C01E9E294D00624E77 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 046D42BB1E9E294D00624E77 /* TFHppleElement.m */; };
+		046D42C11E9E294D00624E77 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 046D42BD1E9E294D00624E77 /* TFHpple.m */; };
+		046D42C31E9E296E00624E77 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 046D42C21E9E296E00624E77 /* libxml2.tbd */; };
+		046D42C61E9F09CD00624E77 /* DiscoverMainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42C51E9F09CD00624E77 /* DiscoverMainTableViewController.swift */; };
+		046D42C81E9F1D8300624E77 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046D42C71E9F1D8300624E77 /* Setting.storyboard */; };
+		046D42CB1E9F1ED000624E77 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42CA1E9F1ED000624E77 /* SettingTableViewController.swift */; };
+		046D42CD1E9F5FD200624E77 /* ReadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42CC1E9F5FD200624E77 /* ReadingViewController.swift */; };
+		046D42CF1E9F7B4B00624E77 /* ReadContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42CE1E9F7B4B00624E77 /* ReadContext.swift */; };
 		954FE5B9E6C717120F61F128 /* Pods_SoupReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 911F5F90788B3EB3A0677EC4 /* Pods_SoupReader.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +76,18 @@
 		046D42A71E9E0EB300624E77 /* BlogMainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogMainTableViewController.swift; sourceTree = "<group>"; };
 		046D42AA1E9E101700624E77 /* BlogMainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogMainTableViewCell.swift; sourceTree = "<group>"; };
 		046D42AC1E9E116700624E77 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		046D42B91E9E294D00624E77 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		046D42BA1E9E294D00624E77 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		046D42BB1E9E294D00624E77 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		046D42BC1E9E294D00624E77 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		046D42BD1E9E294D00624E77 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		046D42BE1E9E294D00624E77 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		046D42C21E9E296E00624E77 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		046D42C51E9F09CD00624E77 /* DiscoverMainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverMainTableViewController.swift; sourceTree = "<group>"; };
+		046D42C71E9F1D8300624E77 /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		046D42CA1E9F1ED000624E77 /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		046D42CC1E9F5FD200624E77 /* ReadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingViewController.swift; sourceTree = "<group>"; };
+		046D42CE1E9F7B4B00624E77 /* ReadContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadContext.swift; sourceTree = "<group>"; };
 		4F4498E3B7CD38B5BAA17598 /* Pods-SoupReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoupReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoupReader/Pods-SoupReader.debug.xcconfig"; sourceTree = "<group>"; };
 		911F5F90788B3EB3A0677EC4 /* Pods_SoupReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoupReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E329E4E24812A6BFD1D99A82 /* Pods-SoupReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoupReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoupReader/Pods-SoupReader.release.xcconfig"; sourceTree = "<group>"; };
@@ -77,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				046D42C31E9E296E00624E77 /* libxml2.tbd in Frameworks */,
 				954FE5B9E6C717120F61F128 /* Pods_SoupReader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,6 +145,7 @@
 		046D425F1E9DCDC800624E77 /* SoupReader */ = {
 			isa = PBXGroup;
 			children = (
+				046D42B81E9E292F00624E77 /* TFHpple */,
 				046D42A51E9E0E9A00624E77 /* ViewController */,
 				046D429F1E9E043C00624E77 /* Models */,
 				046D429A1E9DD5D400624E77 /* Extension */,
@@ -170,6 +193,7 @@
 				046D42641E9DCDC800624E77 /* Main.storyboard */,
 				046D42931E9DD26D00624E77 /* Blog.storyboard */,
 				046D42951E9DD28D00624E77 /* Discover.storyboard */,
+				046D42C71E9F1D8300624E77 /* Setting.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -187,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				046D42A21E9E052700624E77 /* TagBean.swift */,
+				046D42CE1E9F7B4B00624E77 /* ReadContext.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -194,6 +219,8 @@
 		046D42A51E9E0E9A00624E77 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				046D42C91E9F1E8300624E77 /* Setting */,
+				046D42C41E9F09BB00624E77 /* Discover */,
 				046D42A61E9E0EA200624E77 /* Blog */,
 				046D42AC1E9E116700624E77 /* MainViewController.swift */,
 			);
@@ -205,6 +232,7 @@
 			children = (
 				046D42A91E9E100400624E77 /* Cell */,
 				046D42A71E9E0EB300624E77 /* BlogMainTableViewController.swift */,
+				046D42CC1E9F5FD200624E77 /* ReadingViewController.swift */,
 			);
 			name = Blog;
 			sourceTree = "<group>";
@@ -215,6 +243,35 @@
 				046D42AA1E9E101700624E77 /* BlogMainTableViewCell.swift */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		046D42B81E9E292F00624E77 /* TFHpple */ = {
+			isa = PBXGroup;
+			children = (
+				046D42B91E9E294D00624E77 /* XPathQuery.m */,
+				046D42BA1E9E294D00624E77 /* XPathQuery.h */,
+				046D42BB1E9E294D00624E77 /* TFHppleElement.m */,
+				046D42BC1E9E294D00624E77 /* TFHppleElement.h */,
+				046D42BD1E9E294D00624E77 /* TFHpple.m */,
+				046D42BE1E9E294D00624E77 /* TFHpple.h */,
+			);
+			name = TFHpple;
+			sourceTree = "<group>";
+		};
+		046D42C41E9F09BB00624E77 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				046D42C51E9F09CD00624E77 /* DiscoverMainTableViewController.swift */,
+			);
+			name = Discover;
+			sourceTree = "<group>";
+		};
+		046D42C91E9F1E8300624E77 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				046D42CA1E9F1ED000624E77 /* SettingTableViewController.swift */,
+			);
+			name = Setting;
 			sourceTree = "<group>";
 		};
 		EFFB0A0B78890E5AEA2E8DEE /* Pods */ = {
@@ -229,6 +286,7 @@
 		F94FD851C1EC98E719DE8BCE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				046D42C21E9E296E00624E77 /* libxml2.tbd */,
 				911F5F90788B3EB3A0677EC4 /* Pods_SoupReader.framework */,
 			);
 			name = Frameworks;
@@ -352,6 +410,7 @@
 				046D42961E9DD28D00624E77 /* Discover.storyboard in Resources */,
 				046D42941E9DD26D00624E77 /* Blog.storyboard in Resources */,
 				046D42661E9DCDC800624E77 /* Main.storyboard in Resources */,
+				046D42C81E9F1D8300624E77 /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,15 +483,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				046D42CB1E9F1ED000624E77 /* SettingTableViewController.swift in Sources */,
+				046D42C61E9F09CD00624E77 /* DiscoverMainTableViewController.swift in Sources */,
+				046D42CD1E9F5FD200624E77 /* ReadingViewController.swift in Sources */,
 				046D42A31E9E052700624E77 /* TagBean.swift in Sources */,
 				046D42631E9DCDC800624E77 /* ViewController.swift in Sources */,
+				046D42BF1E9E294D00624E77 /* XPathQuery.m in Sources */,
 				046D42AB1E9E101700624E77 /* BlogMainTableViewCell.swift in Sources */,
 				046D42911E9DCFE800624E77 /* HttpClient.swift in Sources */,
 				046D429E1E9DD65D00624E77 /* StringExtension.swift in Sources */,
 				046D429C1E9DD5F700624E77 /* ViewControllerExtension.swift in Sources */,
+				046D42C11E9E294D00624E77 /* TFHpple.m in Sources */,
 				046D42AD1E9E116700624E77 /* MainViewController.swift in Sources */,
 				046D42A81E9E0EB300624E77 /* BlogMainTableViewController.swift in Sources */,
+				046D42CF1E9F7B4B00624E77 /* ReadContext.swift in Sources */,
 				046D42611E9DCDC800624E77 /* AppDelegate.swift in Sources */,
+				046D42C01E9E294D00624E77 /* TFHppleElement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

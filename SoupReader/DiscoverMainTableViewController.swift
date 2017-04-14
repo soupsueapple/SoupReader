@@ -1,16 +1,15 @@
 //
-//  BlogMainTableViewController.swift
+//  DiscoverMainTableViewController.swift
 //  SoupReader
 //
-//  Created by 汤坤 on 2017/4/12.
+//  Created by 汤坤 on 2017/4/13.
 //  Copyright © 2017年 汤坤. All rights reserved.
 //
 
 import UIKit
-import Ono
 import SafariServices
 
-class BlogMainTableViewController: UITableViewController, XMLParserDelegate{
+class DiscoverMainTableViewController: UITableViewController, XMLParserDelegate {
     
     var tags: Array<TagBean> = []
     
@@ -23,8 +22,6 @@ class BlogMainTableViewController: UITableViewController, XMLParserDelegate{
     var descriptions: String = String()
     
     let cellIdentity = "BlogMainCell"
-    
-    let toReadingIdentity = "toReading"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +50,7 @@ class BlogMainTableViewController: UITableViewController, XMLParserDelegate{
     }
     
     func doBlogXMLRequest() -> Void{
-        let httpClient = HttpClient(baseURL: URL(string: HttpClient.myBlogURL))
+        let httpClient = HttpClient(baseURL: URL(string: HttpClient.favoriteURL))
         httpClient.httpClientSetting()
         httpClient.getRequest(url: "", paramters: nil, block: {(any: Any?, error: Error?) -> Void in
             
@@ -70,16 +67,6 @@ class BlogMainTableViewController: UITableViewController, XMLParserDelegate{
             parse.parse()
             
         })
-    }
-    
-    // MARK: Segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == toReadingIdentity{
-            let tag = tags[(self.tableView.indexPathForSelectedRow?.row)!]
-            
-            let readingViewControll = segue.destination as! ReadingViewController
-            readingViewControll.tag = tag
-        }
     }
     
     // MARK: XMLParserDelegate
@@ -140,17 +127,11 @@ class BlogMainTableViewController: UITableViewController, XMLParserDelegate{
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true;
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
 
     // MARK: - Table view data source
 
@@ -164,33 +145,31 @@ class BlogMainTableViewController: UITableViewController, XMLParserDelegate{
         return tags.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentity, for: indexPath) as! BlogMainTableViewCell
-
+        
         let tag = tags[indexPath.row]
         
         cell.title_lb.text = tag.title
         cell.digest_lb.text = tag.descriptions
-
+        
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: false)
-//        
-//        let tag = tags[indexPath.row]
-//        let link = tag.link
-//        
-//        let safariViewController = SFSafariViewController(url: URL(string: link)!, entersReaderIfAvailable: true)
-//        
-//        present(safariViewController, animated: true, completion: {() -> Void in
-//            
-//            
-//            
-//        })
-//    }
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        let tag = tags[indexPath.row]
+        let link = tag.link
+        
+        let safariViewController = SFSafariViewController(url: URL(string: link)!, entersReaderIfAvailable: true)
+        
+        present(safariViewController, animated: true, completion: {() -> Void in
+            
+            
+            
+        })
+    }
 
     /*
     // Override to support conditional editing of the table view.

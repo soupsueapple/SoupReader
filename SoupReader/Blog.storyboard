@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Soup's Blog-->
+        <!--iSoup-->
         <scene sceneID="eiJ-nx-tSm">
             <objects>
                 <tableViewController id="UgW-QH-A1V" customClass="BlogMainTableViewController" customModule="SoupReader" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,38 +19,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BlogMainCell" id="5DP-Do-5yy" customClass="BlogMainTableViewCell" customModule="SoupReader" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BlogMainCell" id="5DP-Do-5yy" customClass="BlogMainTableViewCell" customModule="SoupReader" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5DP-Do-5yy" id="Cti-ak-7G8">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="63"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yf-oG-OKm">
-                                            <rect key="frame" x="8" y="8" width="359" height="19.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <rect key="frame" x="8" y="8" width="326" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="digest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1E-3H-QdK">
-                                            <rect key="frame" x="8" y="37" width="359" height="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="digest" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1E-3H-QdK">
+                                            <rect key="frame" x="8" y="37" width="326" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="8yf-oG-OKm" secondAttribute="trailing" id="M2u-ms-uBp"/>
-                                        <constraint firstItem="Y1E-3H-QdK" firstAttribute="bottom" secondItem="Cti-ak-7G8" secondAttribute="bottomMargin" id="WiL-mO-aJL"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Y1E-3H-QdK" secondAttribute="trailing" id="jMw-MJ-yHN"/>
-                                        <constraint firstItem="8yf-oG-OKm" firstAttribute="top" secondItem="Cti-ak-7G8" secondAttribute="topMargin" id="oWa-xm-lmv"/>
-                                        <constraint firstItem="8yf-oG-OKm" firstAttribute="leading" secondItem="Cti-ak-7G8" secondAttribute="leadingMargin" id="pf3-l7-sNW"/>
-                                        <constraint firstItem="Y1E-3H-QdK" firstAttribute="leading" secondItem="Cti-ak-7G8" secondAttribute="leadingMargin" id="unV-jZ-IAd"/>
+                                        <constraint firstItem="Y1E-3H-QdK" firstAttribute="top" secondItem="8yf-oG-OKm" secondAttribute="bottom" constant="11" id="0pF-76-TKd"/>
+                                        <constraint firstItem="Y1E-3H-QdK" firstAttribute="bottom" secondItem="Cti-ak-7G8" secondAttribute="bottomMargin" id="3Tr-3J-hJV"/>
+                                        <constraint firstItem="8yf-oG-OKm" firstAttribute="top" secondItem="Cti-ak-7G8" secondAttribute="topMargin" id="MGK-0H-SA1"/>
+                                        <constraint firstItem="8yf-oG-OKm" firstAttribute="leading" secondItem="Cti-ak-7G8" secondAttribute="leadingMargin" id="OVb-BL-Qf3"/>
+                                        <constraint firstItem="Y1E-3H-QdK" firstAttribute="leading" secondItem="Cti-ak-7G8" secondAttribute="leadingMargin" id="QXf-os-iFl"/>
+                                        <constraint firstItem="8yf-oG-OKm" firstAttribute="trailing" secondItem="Cti-ak-7G8" secondAttribute="trailingMargin" id="Wox-Vc-ZGn"/>
+                                        <constraint firstItem="Y1E-3H-QdK" firstAttribute="trailing" secondItem="Cti-ak-7G8" secondAttribute="trailingMargin" id="uQ8-gQ-I7H"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="digest_lb" destination="Y1E-3H-QdK" id="QhF-4T-rSc"/>
                                     <outlet property="title_lb" destination="8yf-oG-OKm" id="zS5-oe-ARK"/>
+                                    <segue destination="Bwi-M9-Sx5" kind="push" identifier="toReading" id="EXq-Lt-PyS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -59,11 +61,30 @@
                             <outlet property="delegate" destination="UgW-QH-A1V" id="nN8-6d-CGg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Soup's Blog" id="pgl-Wd-X4U"/>
+                    <navigationItem key="navigationItem" title="iSoup" id="pgl-Wd-X4U"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xxn-le-PGz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="767.20000000000005" y="98.50074962518741"/>
+        </scene>
+        <!--Reading View Controller-->
+        <scene sceneID="2u1-nu-ltW">
+            <objects>
+                <viewController id="Bwi-M9-Sx5" customClass="ReadingViewController" customModule="SoupReader" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EYO-gF-oFN"/>
+                        <viewControllerLayoutGuide type="bottom" id="rIX-yb-2Xv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iuG-e2-jUh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="46Q-ha-gTh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="84q-f4-Ixx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1599" y="99"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eO4-21-1ca">

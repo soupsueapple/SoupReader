@@ -14,13 +14,16 @@ PODS:
   - AFNetworking/Serialization (3.0.4)
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
+  - Ono (1.2.2)
 
 DEPENDENCIES:
   - AFNetworking
+  - Ono
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
+  Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
 
-PODFILE CHECKSUM: 0d3448d31fc4a148e6b6511375d9ad702ffa89de
+PODFILE CHECKSUM: 3424d1a44ebb08008206bc8da2f457edefde04c6
 
 COCOAPODS: 1.2.0

@@ -16,14 +16,17 @@ class MainViewController: UITabBarController {
         // Do any additional setup after loading the view.
         let sbBlog = UIStoryboard(name: "Blog", bundle: nil)
         let sbDiscover = UIStoryboard(name: "Discover", bundle: nil)
+        let sbSetting = UIStoryboard(name: "Setting", bundle: nil)
         
         let blogNavigationViewController = sbBlog.instantiateViewController(withIdentifier: "Blog") as! UINavigationController
         let discoverNavigationViewController = sbDiscover.instantiateViewController(withIdentifier: "Discover") as! UINavigationController
+        let settingNavigationViewController = sbSetting.instantiateViewController(withIdentifier: "Setting") as! UINavigationController
         
         blogNavigationViewController.tabBarItem = UITabBarItem(title: "Blog", image: nil, tag: 0)
-        discoverNavigationViewController.tabBarItem = UITabBarItem(title: "Discover", image: nil, tag: 0)
+        discoverNavigationViewController.tabBarItem = UITabBarItem(title: "Discover", image: nil, tag: 1)
+        settingNavigationViewController.tabBarItem = UITabBarItem(title: "Setting", image: nil, tag: 2)
         
-        self.viewControllers = [blogNavigationViewController, discoverNavigationViewController]
+        self.viewControllers = [blogNavigationViewController, discoverNavigationViewController, settingNavigationViewController]
     }
 
     override func didReceiveMemoryWarning() {

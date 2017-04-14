@@ -1,10 +1,10 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, ’10.0’
+platform :ios, ’8.0’
 use_frameworks!
 
 def shared_pods
     pod 'AFNetworking'
-#    pod 'BlockRSSParser'
+    pod 'Ono'
 end
 
 target 'SoupReader' do

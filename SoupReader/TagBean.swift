@@ -13,4 +13,5 @@ class TagBean: NSObject {
     var title: String = String()
     var date: String = String() //yyyy-MM-ddTHH:mm:ss+hh:mm
     var subject: String = String()
+    var descriptions: String = String()
 }
