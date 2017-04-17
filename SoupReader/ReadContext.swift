@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Ono
 
 enum ContextType {
     case img
@@ -39,4 +40,5 @@ class ReadContext: NSObject {
     var contexts: Array<Dictionary<String, String>> = []
     var label = ""
     var index = 0
+    var lineNumber: UInt = 0
 }

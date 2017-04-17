@@ -55,17 +55,15 @@ class ReadingViewController: UIViewController {
                 for (_, element) in p.children.enumerated() {
                     let e: ONOXMLElement = element as! ONOXMLElement
                     
-                    let articleElements = e.children(withTag: "article")
+                    let articleElement = e.firstChild(withTag: "article")
                     
-                    for (_, articleElement) in (articleElements?.enumerated())!{
-                        let article = articleElement as! ONOXMLElement
+                    if let article = articleElement{
+
                         
                         // 文章头
-                        let headerElements = article.children(withTag: "header")
+                        let headerElement = article.firstChild(withTag: "header")
                         
-                        for (_, headerElement) in (headerElements?.enumerated())!{
-                            
-                            let header = headerElement as! ONOXMLElement
+                        if let header = headerElement{
                             
                             // 封面
                             let divs = header.children(withTag: "div")
@@ -85,7 +83,7 @@ class ReadingViewController: UIViewController {
                                     readContext.contextType = .img
                                     readContext.contextTag = .thumbnail
                                     readContext.contextStyle = .normal
-                                    
+                                    readContext.lineNumber = (imgElement?.lineNumber)!
                                     arr.append(readContext)
                                 }
                             }
@@ -102,19 +100,14 @@ class ReadingViewController: UIViewController {
                                 readContext.contextType = .text
                                 readContext.contextTag = .h1
                                 readContext.contextStyle = .normal
-                                
+                                readContext.lineNumber = h1.lineNumber
                                 arr.append(readContext)
                             }
                             
                         }
                         
                         // 正文
-                        let divs = article.children(withTag: "div")
-                        
-                        for (_, div) in (divs?.enumerated())!{
-                            
-                            let d = div as! ONOXMLElement
-                            
+                        if let d = article.firstChild(withTag: "div"){
                             // 副标题
                             let h2Elements = d.children(withTag: "h2")
                             
@@ -126,7 +119,7 @@ class ReadingViewController: UIViewController {
                                 readContext.contextType = .text
                                 readContext.contextTag = .h2
                                 readContext.contextStyle = .normal
-                                
+                                readContext.lineNumber = h.lineNumber
                                 arr.append(readContext)
                             }
                             
@@ -140,7 +133,7 @@ class ReadingViewController: UIViewController {
                                 readContext.contextType = .text
                                 readContext.contextTag = .h3
                                 readContext.contextStyle = .normal
-                                
+                                readContext.lineNumber = h.lineNumber
                                 arr.append(readContext)
                             }
                             
@@ -154,7 +147,7 @@ class ReadingViewController: UIViewController {
                                 readContext.contextType = .text
                                 readContext.contextTag = .h4
                                 readContext.contextStyle = .normal
-                                
+                                readContext.lineNumber = h.lineNumber
                                 arr.append(readContext)
                             }
                             
@@ -168,7 +161,7 @@ class ReadingViewController: UIViewController {
                                 readContext.contextType = .text
                                 readContext.contextTag = .h5
                                 readContext.contextStyle = .normal
-                                
+                                readContext.lineNumber = h.lineNumber
                                 arr.append(readContext)
                             }
                             
@@ -205,8 +198,8 @@ class ReadingViewController: UIViewController {
                                 }
                                 
                                 readContext.contexts = contexts
+                                readContext.lineNumber = p.lineNumber
                                 arr.append(readContext)
-                                
                             }
                             
                             // 引用文字
@@ -220,7 +213,7 @@ class ReadingViewController: UIViewController {
                                 readContext.contextType = .text
                                 readContext.contextTag = .p
                                 readContext.contextStyle = .blockquote
-                                
+                                readContext.lineNumber = b.lineNumber
                                 arr.append(readContext)
                             }
                             
@@ -237,6 +230,7 @@ class ReadingViewController: UIViewController {
                                 readContext.contextTag = .li
                                 readContext.contextStyle = .normal
                                 readContext.index = index + 1
+                                readContext.lineNumber = list.lineNumber
                                 
                                 let aHrefs = list.children(withTag: "a")
                                 
@@ -252,7 +246,6 @@ class ReadingViewController: UIViewController {
                                 readContext.contexts = contexts
                                 
                                 arr.append(readContext)
-                                
                             }
                             
                             // 文字插图
@@ -272,7 +265,7 @@ class ReadingViewController: UIViewController {
                                     readContext.contextType = .img
                                     readContext.contextTag = .figure
                                     readContext.contextStyle = .normal
-                                    
+                                    readContext.lineNumber = (imgElement?.lineNumber)!
                                     arr.append(readContext)
                                 }
                                 
@@ -283,9 +276,9 @@ class ReadingViewController: UIViewController {
                                 
                                 
                             }
-
-                            
                         }
+                        
+                        
                         
                         
                     }
@@ -293,8 +286,10 @@ class ReadingViewController: UIViewController {
                     
                 }
                 
+                arr.sort(by: {$0.lineNumber < $1.lineNumber})
+                
                 for readContext in arr{
-                    print("\(readContext.context)\n")
+                    print("\(readContext.context)   \(readContext.lineNumber)\n")
                 }
             }
             
