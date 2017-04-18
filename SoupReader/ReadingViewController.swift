@@ -11,13 +11,19 @@ import Ono
 
 class ReadingViewController: UIViewController {
     
+    @IBOutlet weak var context_TV: UITextView!
+    
     var tag = TagBean()
+    
+    var readContexts: Array<ReadContext> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.title = tag.title
+        self.context_TV.isEditable = false
+        self.automaticallyAdjustsScrollViewInsets = false;
         
         doHtmlRequest(url: tag.link)
     }
@@ -50,7 +56,7 @@ class ReadingViewController: UIViewController {
             
             if let p = postsParentElement{
                 
-                var arr: Array<ReadContext> = []
+                
                 
                 for (_, element) in p.children.enumerated() {
                     let e: ONOXMLElement = element as! ONOXMLElement
@@ -84,7 +90,7 @@ class ReadingViewController: UIViewController {
                                     readContext.contextTag = .thumbnail
                                     readContext.contextStyle = .normal
                                     readContext.lineNumber = (imgElement?.lineNumber)!
-                                    arr.append(readContext)
+                                    readContexts.append(readContext)
                                 }
                             }
                             
@@ -101,7 +107,7 @@ class ReadingViewController: UIViewController {
                                 readContext.contextTag = .h1
                                 readContext.contextStyle = .normal
                                 readContext.lineNumber = h1.lineNumber
-                                arr.append(readContext)
+                                readContexts.append(readContext)
                             }
                             
                         }
@@ -120,7 +126,7 @@ class ReadingViewController: UIViewController {
                                 readContext.contextTag = .h2
                                 readContext.contextStyle = .normal
                                 readContext.lineNumber = h.lineNumber
-                                arr.append(readContext)
+                                readContexts.append(readContext)
                             }
                             
                             let h3Elements = d.children(withTag: "h3")
@@ -134,7 +140,7 @@ class ReadingViewController: UIViewController {
                                 readContext.contextTag = .h3
                                 readContext.contextStyle = .normal
                                 readContext.lineNumber = h.lineNumber
-                                arr.append(readContext)
+                                readContexts.append(readContext)
                             }
                             
                             let h4Elements = d.children(withTag: "h4")
@@ -148,7 +154,7 @@ class ReadingViewController: UIViewController {
                                 readContext.contextTag = .h4
                                 readContext.contextStyle = .normal
                                 readContext.lineNumber = h.lineNumber
-                                arr.append(readContext)
+                                readContexts.append(readContext)
                             }
                             
                             let h5Elements = d.children(withTag: "h5")
@@ -162,7 +168,7 @@ class ReadingViewController: UIViewController {
                                 readContext.contextTag = .h5
                                 readContext.contextStyle = .normal
                                 readContext.lineNumber = h.lineNumber
-                                arr.append(readContext)
+                                readContexts.append(readContext)
                             }
                             
                             // 文字
@@ -199,7 +205,7 @@ class ReadingViewController: UIViewController {
                                 
                                 readContext.contexts = contexts
                                 readContext.lineNumber = p.lineNumber
-                                arr.append(readContext)
+                                readContexts.append(readContext)
                             }
                             
                             // 引用文字
@@ -214,7 +220,7 @@ class ReadingViewController: UIViewController {
                                 readContext.contextTag = .p
                                 readContext.contextStyle = .blockquote
                                 readContext.lineNumber = b.lineNumber
-                                arr.append(readContext)
+                                readContexts.append(readContext)
                             }
                             
                             // list
@@ -245,7 +251,7 @@ class ReadingViewController: UIViewController {
                                 
                                 readContext.contexts = contexts
                                 
-                                arr.append(readContext)
+                                readContexts.append(readContext)
                             }
                             
                             // 文字插图
@@ -266,7 +272,7 @@ class ReadingViewController: UIViewController {
                                     readContext.contextTag = .figure
                                     readContext.contextStyle = .normal
                                     readContext.lineNumber = (imgElement?.lineNumber)!
-                                    arr.append(readContext)
+                                    readContexts.append(readContext)
                                 }
                                 
                                 let figcaptionElement = figure.firstChild(withTag: "figcaption")
@@ -286,16 +292,55 @@ class ReadingViewController: UIViewController {
                     
                 }
                 
-                arr.sort(by: {$0.lineNumber < $1.lineNumber})
                 
-                for readContext in arr{
-                    print("\(readContext.context)   \(readContext.lineNumber)\n")
-                }
+                contextOnTextView()
+                
             }
             
         }catch{
             
         }
+    }
+    
+    func contextOnTextView(){
+        let attriStr = NSMutableAttributedString()
+        
+        readContexts.sort(by: {$0.lineNumber < $1.lineNumber})
+        
+        for readContext in readContexts{
+            
+            switch readContext.contextTag {
+            case .h1:
+                let h1AttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 28)])
+                attriStr.append(h1AttriStr)
+                break
+            case .h2:
+                let h2AttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 24)])
+                attriStr.append(h2AttriStr)
+                break
+            case .h3:
+                let h3AttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 20)])
+                attriStr.append(h3AttriStr)
+                break
+            case .h4:
+                break
+            case .thumbnail:
+                break
+            case .p:
+                let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)])
+                attriStr.append(pAttriStr)
+                break
+            case .figure:
+                break
+            case .li:
+                break
+            default:
+                break
+                
+            }
+        }
+        
+        self.context_TV.attributedText = attriStr
     }
     
     override func viewWillDisappear(_ animated: Bool) {
