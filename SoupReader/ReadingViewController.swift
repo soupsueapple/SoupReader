@@ -315,11 +315,11 @@ class ReadingViewController: UIViewController {
                 attriStr.append(h1AttriStr)
                 break
             case .h2:
-                let h2AttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 24)])
+                let h2AttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 20)])
                 attriStr.append(h2AttriStr)
                 break
             case .h3:
-                let h3AttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 20)])
+                let h3AttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18)])
                 attriStr.append(h3AttriStr)
                 break
             case .h4:
@@ -327,7 +327,7 @@ class ReadingViewController: UIViewController {
             case .thumbnail:
                 break
             case .p:
-                let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)])
+                let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)])
                 attriStr.append(pAttriStr)
                 break
             case .figure:
