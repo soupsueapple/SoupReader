@@ -18,7 +18,7 @@ class HttpClient: AFHTTPSessionManager {
     func httpClientSetting() -> Void {
         self.securityPolicy = AFSecurityPolicy.init(pinningMode: .none)
         self.responseSerializer = AFHTTPResponseSerializer()
-        self.responseSerializer.acceptableContentTypes = ["text/html", "text/plain", "text/xml","application/json", "text/json", "text/javascript", "application/rss+xml", "image/png", "image/jepg"]
+        self.responseSerializer.acceptableContentTypes = ["text/html", "text/plain", "text/xml","application/json", "text/json", "text/javascript", "application/rss+xml", "image/png", "image/jpeg"]
     }
     
     func httpError(error: Error?) -> Bool{

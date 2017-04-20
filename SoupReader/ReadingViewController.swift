@@ -25,11 +25,11 @@ class ReadingViewController: UIViewController {
         self.context_TV.isEditable = false
         self.automaticallyAdjustsScrollViewInsets = false;
         
-        doHtmlRequest(url: tag.link)
+        loadHtml(url: tag.link)
     }
     
     // MARK: download image
-    func downlongImage(url: String) -> Void{
+    func downlongImage(url: String, index: Int) -> Void{
         let httpClient = HttpClient()
         httpClient.httpClientSetting()
         httpClient.getRequest(url: url, paramters: nil, block: {(any: Any?, error: Error?) -> Void in
@@ -40,17 +40,40 @@ class ReadingViewController: UIViewController {
             }
             
             let data = any as! Data
-            UIImage(data: data)
+            
+            let imgAttachment = NSTextAttachment()
+            imgAttachment.image = UIImage(data: data)
+            imgAttachment.bounds = CGRect(x: 0, y: 0, width: (imgAttachment.image?.size.width)!, height: (imgAttachment.image?.size.height)!)
+            let attriStr = self.context_TV.attributedText.mutableCopy() as! NSMutableAttributedString
+            attriStr.insert(NSAttributedString.init(attachment: imgAttachment), at: index)
+            
+            self.context_TV.attributedText = attriStr
+        })
+    }
+    
+    func loadHtml(url: String){
+        let httpClient = HttpClient()
+        httpClient.httpClientSetting()
+        httpClient.getRequest(url: url, paramters: nil, block: {(any: Any?, error: Error?) -> Void in
+            
+            if httpClient.httpError(error: error) {
+                self.showAlert(text: error?.localizedDescription)
+                return
+            }
+            
+            let data = any as! Data
+            
+            self.doHtmlRequest(data: data)
         })
     }
     
     // MARK: HTMLParser
-    func doHtmlRequest(url: String) -> Void{
+    func doHtmlRequest(data: Data) -> Void{
         
-        let data = NSData(contentsOf: URL(string: url)!)
+//        let data = NSData(contentsOf: URL(string: url)!)
         
         do{
-            let doc = try ONOXMLDocument.htmlDocument(with: data! as Data)
+            let doc = try ONOXMLDocument.htmlDocument(with: data as Data)
             
             let postsParentElement: ONOXMLElement? = doc.firstChild(withXPath: "//*[@id='primary']")
             
@@ -226,32 +249,44 @@ class ReadingViewController: UIViewController {
                             // list
                             let ol = d.children(withTag: "ol")
                             
-                            for (index, li) in (ol?.enumerated())!{
+                            for (_, li) in (ol?.enumerated())!{
+                                
+                                
                                 
                                 let list = li as! ONOXMLElement
                                 
-                                let readContext = ReadContext()
-                                readContext.context = list.stringValue()
-                                readContext.contextType = .text
-                                readContext.contextTag = .li
-                                readContext.contextStyle = .normal
-                                readContext.index = index + 1
-                                readContext.lineNumber = list.lineNumber
+                                let ls = list.children(withTag: "li")
                                 
-                                let aHrefs = list.children(withTag: "a")
-                                
-                                var contexts: Array<Dictionary<String, String>> = []
-                                
-                                for (_,aHref) in (aHrefs?.enumerated())!{
-                                    let a = aHref as! ONOXMLElement
-                                    let href = a.value(forAttribute: "href") as! String
-                                    let dic = ["href": href, "string": a.stringValue()]
-                                    contexts.append(dic as! [String : String])
+                                for (index, l1) in (ls?.enumerated())!{
+                                    
+                                    let l = l1 as! ONOXMLElement
+                                    
+                                    let readContext = ReadContext()
+                                    readContext.context = l.stringValue()
+                                    readContext.contextType = .text
+                                    readContext.contextTag = .li
+                                    readContext.contextStyle = .normal
+                                    readContext.index = index + 1
+                                    readContext.lineNumber = l.lineNumber
+                                    
+                                    let aHrefs = l.children(withTag: "a")
+                                    
+                                    var contexts: Array<Dictionary<String, String>> = []
+                                    
+                                    for (_,aHref) in (aHrefs?.enumerated())!{
+                                        let a = aHref as! ONOXMLElement
+                                        let href = a.value(forAttribute: "href") as! String
+                                        let dic = ["href": href, "string": a.stringValue()]
+                                        contexts.append(dic as! [String : String])
+                                    }
+                                    
+                                    readContext.contexts = contexts
+                                    
+                                    readContexts.append(readContext)
                                 }
                                 
-                                readContext.contexts = contexts
                                 
-                                readContexts.append(readContext)
+                                
                             }
                             
                             // 文字插图
@@ -325,14 +360,20 @@ class ReadingViewController: UIViewController {
             case .h4:
                 break
             case .thumbnail:
+                self.downlongImage(url: readContext.context, index: 0)
                 break
             case .p:
                 let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)])
                 attriStr.append(pAttriStr)
                 break
             case .figure:
+                self.downlongImage(url: readContext.context, index: attriStr.length)
                 break
             case .li:
+//                let pAttriStr = NSAttributedString(string: "\(readContext.index). "+readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)])
+//                attriStr.append(pAttriStr)
+                
+                self.setupTextAndLinks(readContext: readContext)
                 break
             default:
                 break
@@ -341,6 +382,59 @@ class ReadingViewController: UIViewController {
         }
         
         self.context_TV.attributedText = attriStr
+    }
+    
+    func setupTextAndLinks(readContext: ReadContext){
+        
+        var font: UIFont?
+        
+        let attriStr = self.context_TV.attributedText.mutableCopy() as! NSMutableAttributedString
+        
+        switch readContext.contextTag {
+        case .h1:
+            font = UIFont.boldSystemFont(ofSize: 28)
+            break
+        case .h2:
+            font = UIFont.boldSystemFont(ofSize: 20)
+            break
+        case .h3:
+            font = UIFont.boldSystemFont(ofSize: 18)
+            break
+        case .p:
+            font = UIFont.systemFont(ofSize: 16)
+            break
+        case .li:
+            font = UIFont.systemFont(ofSize: 16)
+            break
+        default:
+            break
+            
+        }
+        
+        if readContext.contexts.count > 0{
+            
+            for dic in readContext.contexts{
+                for(_, value) in dic{
+                    if readContext.context.contains(value){
+                        
+                        
+                        readContext.context = readContext.context.replacingOccurrences(of: value, with: "\n")
+                    }
+                }
+            }
+            
+        }else{
+            
+            let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: font!])
+            attriStr.append(pAttriStr)
+            
+            
+            
+            self.context_TV.attributedText = attriStr
+            
+        }
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
