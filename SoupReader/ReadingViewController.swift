@@ -346,7 +346,7 @@ class ReadingViewController: UIViewController {
             
             switch readContext.contextTag {
             case .h1:
-                let h1AttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 28)])
+                let h1AttriStr = NSAttributedString(string:readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 28)])
                 attriStr.append(h1AttriStr)
                 break
             case .h2:
@@ -414,25 +414,54 @@ class ReadingViewController: UIViewController {
         if readContext.contexts.count > 0{
             
             for dic in readContext.contexts{
-                for(_, value) in dic{
-                    if readContext.context.contains(value){
-                        
-                        
-                        readContext.context = readContext.context.replacingOccurrences(of: value, with: "\n")
-                    }
+                let value = dic["string"]
+                
+                if readContext.context.contains(value!){
+                    
+                    readContext.context = readContext.context.replacingOccurrences(of: value!, with: "isLink"+value!)
                 }
+            }
+            
+            let contextStrs = readContext.context.components(separatedBy: "isLink")
+            
+            let count = contextStrs.count - 1
+            
+            for  index in 0...count {
+                let str = contextStrs[index]
+                
+//                for dic in readContext.contexts{
+//                    let href = dic["href"]
+//                    let string = dic["string"]
+//                    
+//                    if string == str{
+//                        let pAttriStr = NSAttributedString(string: str, attributes: [NSForegroundColorAttributeName: UIColor.init(hex: "#D22115"), NSFontAttributeName: font!])
+//                        attriStr.insert(pAttriStr, at: self.context_TV.attributedText.length)
+//                        
+//                        print("\(self.context_TV.attributedText.length) 前\n")
+//                        
+//                        self.context_TV.attributedText = attriStr
+//                        
+//                    }else{
+//                        let pAttriStr = NSAttributedString(string: str + "\n\n", attributes: [NSFontAttributeName: font!])
+//                        attriStr.append(pAttriStr)
+//                        self.context_TV.attributedText = attriStr
+//                    }
+//                }
+                
+                print("\(str) \n")
+                
+                let pAttriStr = NSAttributedString(string: str, attributes: [NSFontAttributeName: font!])
+                attriStr.append(pAttriStr)
+                self.context_TV.attributedText = attriStr
             }
             
         }else{
             
             let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: font!])
             attriStr.append(pAttriStr)
-            
-            
-            
             self.context_TV.attributedText = attriStr
-            
         }
+        
         
         
     }

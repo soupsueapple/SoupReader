@@ -38,6 +38,7 @@ class ReadContext: NSObject {
     var contextStyle: ContextStyle = ContextStyle.normal
     var context = ""
     var contexts: Array<Dictionary<String, String>> = []
+    var link: Dictionary<String, String> = [:]
     var label = ""
     var index = 0
     var lineNumber: UInt = 0

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		045FB4D51EA988CE00D552AA /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045FB4D41EA988CE00D552AA /* UIColorExtension.swift */; };
 		046D42611E9DCDC800624E77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42601E9DCDC800624E77 /* AppDelegate.swift */; };
 		046D42631E9DCDC800624E77 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42621E9DCDC800624E77 /* ViewController.swift */; };
 		046D42661E9DCDC800624E77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046D42641E9DCDC800624E77 /* Main.storyboard */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		045FB4D41EA988CE00D552AA /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		046D425D1E9DCDC800624E77 /* SoupReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoupReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046D42601E9DCDC800624E77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		046D42621E9DCDC800624E77 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			children = (
 				046D429B1E9DD5F700624E77 /* ViewControllerExtension.swift */,
 				046D429D1E9DD65D00624E77 /* StringExtension.swift */,
+				045FB4D41EA988CE00D552AA /* UIColorExtension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				045FB4D51EA988CE00D552AA /* UIColorExtension.swift in Sources */,
 				046D42CB1E9F1ED000624E77 /* SettingTableViewController.swift in Sources */,
 				046D42C61E9F09CD00624E77 /* DiscoverMainTableViewController.swift in Sources */,
 				046D42CD1E9F5FD200624E77 /* ReadingViewController.swift in Sources */,
