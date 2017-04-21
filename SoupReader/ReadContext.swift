@@ -23,12 +23,12 @@ enum ContextTag {
     case h4
     case h5
     case p
+    case blockquote
     case li
 }
 
 enum ContextStyle {
     case strong
-    case blockquote
     case normal
 }
 

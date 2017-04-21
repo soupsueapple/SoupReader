@@ -29,10 +29,10 @@ class ReadingViewController: UIViewController {
     }
     
     // MARK: download image
-    func downlongImage(url: String, index: Int) -> Void{
+    func downlongImage(readContext: ReadContext, index: Int) -> Void{
         let httpClient = HttpClient()
         httpClient.httpClientSetting()
-        httpClient.getRequest(url: url, paramters: nil, block: {(any: Any?, error: Error?) -> Void in
+        httpClient.getRequest(url: readContext.context, paramters: nil, block: {(any: Any?, error: Error?) -> Void in
             
             if httpClient.httpError(error: error) {
                 self.showAlert(text: error?.localizedDescription)
@@ -46,6 +46,9 @@ class ReadingViewController: UIViewController {
             imgAttachment.bounds = CGRect(x: 0, y: 0, width: (imgAttachment.image?.size.width)!, height: (imgAttachment.image?.size.height)!)
             let attriStr = self.context_TV.attributedText.mutableCopy() as! NSMutableAttributedString
             attriStr.insert(NSAttributedString.init(attachment: imgAttachment), at: index)
+            
+            let label = NSAttributedString.init(string: readContext.label + "\n\n")
+            attriStr.insert(label, at: index + 1)
             
             self.context_TV.attributedText = attriStr
         })
@@ -240,8 +243,7 @@ class ReadingViewController: UIViewController {
                                 let readContext = ReadContext()
                                 readContext.context = b.stringValue()
                                 readContext.contextType = .text
-                                readContext.contextTag = .p
-                                readContext.contextStyle = .blockquote
+                                readContext.contextTag = .blockquote
                                 readContext.lineNumber = b.lineNumber
                                 readContexts.append(readContext)
                             }
@@ -360,20 +362,28 @@ class ReadingViewController: UIViewController {
             case .h4:
                 break
             case .thumbnail:
-                self.downlongImage(url: readContext.context, index: 0)
+                self.downlongImage(readContext: readContext, index: 0)
                 break
             case .p:
-                let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)])
+                var font = UIFont.systemFont(ofSize: 16)
+                if readContext.contextStyle == .strong{
+                    font = UIFont.boldSystemFont(ofSize: 16)
+                }
+                let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: font])
+                attriStr.append(pAttriStr)
+                break
+            case .blockquote:
+                let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSForegroundColorAttributeName: UIColor.init(hex: "#D22115"),NSFontAttributeName: UIFont.systemFont(ofSize: 16)])
                 attriStr.append(pAttriStr)
                 break
             case .figure:
-                self.downlongImage(url: readContext.context, index: attriStr.length)
+                self.downlongImage(readContext: readContext, index: attriStr.length)
                 break
             case .li:
 //                let pAttriStr = NSAttributedString(string: "\(readContext.index). "+readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)])
 //                attriStr.append(pAttriStr)
                 
-                self.setupTextAndLinks(readContext: readContext)
+                self.setupTextAndLinks(readContext: readContext, attriStr: attriStr)
                 break
             default:
                 break
@@ -384,11 +394,9 @@ class ReadingViewController: UIViewController {
         self.context_TV.attributedText = attriStr
     }
     
-    func setupTextAndLinks(readContext: ReadContext){
+    func setupTextAndLinks(readContext: ReadContext, attriStr: NSMutableAttributedString){
         
-        var font: UIFont?
-        
-        let attriStr = self.context_TV.attributedText.mutableCopy() as! NSMutableAttributedString
+        var font: UIFont!
         
         switch readContext.contextTag {
         case .h1:
@@ -402,9 +410,18 @@ class ReadingViewController: UIViewController {
             break
         case .p:
             font = UIFont.systemFont(ofSize: 16)
+            if readContext.contextStyle == .strong{
+                font = UIFont.boldSystemFont(ofSize: 16)
+            }
+            break
+        case .blockquote:
+            font = UIFont.systemFont(ofSize: 16)
             break
         case .li:
             font = UIFont.systemFont(ofSize: 16)
+            if readContext.contextStyle == .strong{
+                font = UIFont.boldSystemFont(ofSize: 16)
+            }
             break
         default:
             break
@@ -418,7 +435,7 @@ class ReadingViewController: UIViewController {
                 
                 if readContext.context.contains(value!){
                     
-                    readContext.context = readContext.context.replacingOccurrences(of: value!, with: "isLink"+value!)
+                    readContext.context = readContext.context.replacingOccurrences(of: value!, with: "isLink"+value!+"isLink")
                 }
             }
             
@@ -427,39 +444,46 @@ class ReadingViewController: UIViewController {
             let count = contextStrs.count - 1
             
             for  index in 0...count {
-                let str = contextStrs[index]
+                var str = contextStrs[index]
                 
-//                for dic in readContext.contexts{
-//                    let href = dic["href"]
-//                    let string = dic["string"]
-//                    
-//                    if string == str{
-//                        let pAttriStr = NSAttributedString(string: str, attributes: [NSForegroundColorAttributeName: UIColor.init(hex: "#D22115"), NSFontAttributeName: font!])
-//                        attriStr.insert(pAttriStr, at: self.context_TV.attributedText.length)
-//                        
-//                        print("\(self.context_TV.attributedText.length) 前\n")
-//                        
-//                        self.context_TV.attributedText = attriStr
-//                        
-//                    }else{
-//                        let pAttriStr = NSAttributedString(string: str + "\n\n", attributes: [NSFontAttributeName: font!])
-//                        attriStr.append(pAttriStr)
-//                        self.context_TV.attributedText = attriStr
-//                    }
-//                }
+                if index == 0 && readContext.contextTag == .li {
+                    str = "\(readContext.index). " + str
+                }
                 
-                print("\(str) \n")
+                if index == count{
+                    str += "\n\n"
+                }
                 
-                let pAttriStr = NSAttributedString(string: str, attributes: [NSFontAttributeName: font!])
+                
+                
+               
+                
+                for dic in readContext.contexts{
+                    let value = dic["string"]
+                    let href = dic["href"]
+                    
+                    if str.contains(value!){
+                        
+                        let pAttriStr = NSAttributedString(string: str, attributes: [NSForegroundColorAttributeName: UIColor.init(hex: "#007AFF"), NSFontAttributeName: font])
+                        attriStr.append(pAttriStr)
+                        
+                        let length = attriStr.length
+                        
+                        attriStr.addAttribute(NSLinkAttributeName, value: URL.init(string: href!)!, range: NSRange.init(location: length - str.length, length: str.length))
+                        
+                        str = ""
+                        
+                    }
+                }
+                
+                let pAttriStr = NSAttributedString(string: str, attributes: [NSFontAttributeName: font])
                 attriStr.append(pAttriStr)
+                
                 self.context_TV.attributedText = attriStr
+                
+                
             }
             
-        }else{
-            
-            let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: font!])
-            attriStr.append(pAttriStr)
-            self.context_TV.attributedText = attriStr
         }
         
         
