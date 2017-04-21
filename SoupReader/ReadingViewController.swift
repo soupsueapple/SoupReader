@@ -8,8 +8,10 @@
 
 import UIKit
 import Ono
+import SafariServices
 
-class ReadingViewController: UIViewController {
+class ReadingViewController: UIViewController, UITextViewDelegate {
+    let imageIdentity = "image"
     
     @IBOutlet weak var context_TV: UITextView!
     
@@ -23,6 +25,7 @@ class ReadingViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.title = tag.title
         self.context_TV.isEditable = false
+        self.context_TV.delegate = self
         self.automaticallyAdjustsScrollViewInsets = false;
         
         loadHtml(url: tag.link)
@@ -41,13 +44,18 @@ class ReadingViewController: UIViewController {
             
             let data = any as! Data
             
+            
+            
             let imgAttachment = NSTextAttachment()
             imgAttachment.image = UIImage(data: data)
-            imgAttachment.bounds = CGRect(x: 0, y: 0, width: (imgAttachment.image?.size.width)!, height: (imgAttachment.image?.size.height)!)
+            
+            let width = (UIScreen.main.bounds.size.width - (imgAttachment.image?.size.width)! / 3) / 2
+            
+            imgAttachment.bounds = CGRect(x: width, y: 0, width: (imgAttachment.image?.size.width)! / 3, height: (imgAttachment.image?.size.height)! / 3)
             let attriStr = self.context_TV.attributedText.mutableCopy() as! NSMutableAttributedString
             attriStr.insert(NSAttributedString.init(attachment: imgAttachment), at: index)
             
-            let label = NSAttributedString.init(string: readContext.label + "\n\n")
+            let label = NSAttributedString.init(string: "\n\n" + readContext.label + "\n\n")
             attriStr.insert(label, at: index + 1)
             
             self.context_TV.attributedText = attriStr
@@ -365,12 +373,15 @@ class ReadingViewController: UIViewController {
                 self.downlongImage(readContext: readContext, index: 0)
                 break
             case .p:
-                var font = UIFont.systemFont(ofSize: 16)
-                if readContext.contextStyle == .strong{
-                    font = UIFont.boldSystemFont(ofSize: 16)
-                }
-                let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: font])
-                attriStr.append(pAttriStr)
+//                var font = UIFont.systemFont(ofSize: 16)
+//                if readContext.contextStyle == .strong{
+//                    font = UIFont.boldSystemFont(ofSize: 16)
+//                }
+//                
+//                let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: font])
+//                attriStr.append(pAttriStr)
+                
+                self.setupTextAndLinks(readContext: readContext, attriStr: attriStr)
                 break
             case .blockquote:
                 let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSForegroundColorAttributeName: UIColor.init(hex: "#D22115"),NSFontAttributeName: UIFont.systemFont(ofSize: 16)])
@@ -454,10 +465,6 @@ class ReadingViewController: UIViewController {
                     str += "\n\n"
                 }
                 
-                
-                
-               
-                
                 for dic in readContext.contexts{
                     let value = dic["string"]
                     let href = dic["href"]
@@ -479,20 +486,57 @@ class ReadingViewController: UIViewController {
                 let pAttriStr = NSAttributedString(string: str, attributes: [NSFontAttributeName: font])
                 attriStr.append(pAttriStr)
                 
-                self.context_TV.attributedText = attriStr
-                
-                
             }
             
+        }else{
+            let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: font])
+            attriStr.append(pAttriStr)
         }
         
+        
+        self.context_TV.attributedText = attriStr
         
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false;
+    // MARK: UITextViewDelegate
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        
+        let safariViewController = SFSafariViewController(url: URL, entersReaderIfAvailable: true)
+        
+        present(safariViewController, animated: true, completion: {() -> Void in
+            
+            
+            
+        })
+        
+        return false
     }
+    
+    func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        
+        if let image = textAttachment.image{
+            self.performSegue(withIdentifier: imageIdentity, sender: image)
+        }
+        
+        return false
+    }
+    
+    
+    // MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == imageIdentity{
+            
+            if let image: UIImage = sender as? UIImage{
+                let imageViewController = segue.destination as! ImageViewController
+                imageViewController.imgae = image
+            }
+            
+            
+        }
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		045FB4D51EA988CE00D552AA /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045FB4D41EA988CE00D552AA /* UIColorExtension.swift */; };
+		045FB4F01EAA01FB00D552AA /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045FB4EF1EAA01FB00D552AA /* ImageViewController.swift */; };
 		046D42611E9DCDC800624E77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42601E9DCDC800624E77 /* AppDelegate.swift */; };
 		046D42631E9DCDC800624E77 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42621E9DCDC800624E77 /* ViewController.swift */; };
 		046D42661E9DCDC800624E77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046D42641E9DCDC800624E77 /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		045FB4D41EA988CE00D552AA /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		045FB4EF1EAA01FB00D552AA /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		046D425D1E9DCDC800624E77 /* SoupReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoupReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046D42601E9DCDC800624E77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		046D42621E9DCDC800624E77 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				046D42A91E9E100400624E77 /* Cell */,
 				046D42A71E9E0EB300624E77 /* BlogMainTableViewController.swift */,
 				046D42CC1E9F5FD200624E77 /* ReadingViewController.swift */,
+				045FB4EF1EAA01FB00D552AA /* ImageViewController.swift */,
 			);
 			name = Blog;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				046D42AB1E9E101700624E77 /* BlogMainTableViewCell.swift in Sources */,
 				046D42911E9DCFE800624E77 /* HttpClient.swift in Sources */,
 				046D429E1E9DD65D00624E77 /* StringExtension.swift in Sources */,
+				045FB4F01EAA01FB00D552AA /* ImageViewController.swift in Sources */,
 				046D429C1E9DD5F700624E77 /* ViewControllerExtension.swift in Sources */,
 				046D42C11E9E294D00624E77 /* TFHpple.m in Sources */,
 				046D42AD1E9E116700624E77 /* MainViewController.swift in Sources */,

@@ -144,6 +144,10 @@ class BlogMainTableViewController: UITableViewController, XMLParserDelegate{
     override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true;
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false;
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
