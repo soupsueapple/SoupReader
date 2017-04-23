@@ -15,9 +15,13 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var context_TV: UITextView!
     
+    @IBAction func typeChange(_ sender: Any) {
+    }
     var tag = TagBean()
     
     var readContexts: Array<ReadContext> = []
+    
+    let likeImage = UIImage(named: "like")!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +33,11 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
         self.automaticallyAdjustsScrollViewInsets = false;
         
         loadHtml(url: tag.link)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true;
     }
     
     // MARK: download image
@@ -402,6 +411,12 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
             }
         }
         
+        let imgAttachment = NSTextAttachment()
+        imgAttachment.image = likeImage
+        
+        imgAttachment.bounds = CGRect(x: 0, y: 0, width: (imgAttachment.image?.size.width)! / 3, height: (imgAttachment.image?.size.height)! / 3)
+        attriStr.insert(NSAttributedString.init(attachment: imgAttachment), at: attriStr.length)
+        
         self.context_TV.attributedText = attriStr
     }
     
@@ -515,8 +530,15 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         
+        
         if let image = textAttachment.image{
-            self.performSegue(withIdentifier: imageIdentity, sender: image)
+            if image == likeImage {
+                
+                print("likeImage")
+                
+            }else{
+                self.performSegue(withIdentifier: imageIdentity, sender: image)
+            }
         }
         
         return false

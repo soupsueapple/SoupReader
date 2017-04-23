@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4Ce-Cw-Lh5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4Ce-Cw-Lh5">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -94,7 +94,13 @@
                             <constraint firstAttribute="trailing" secondItem="l6H-7Q-Q3v" secondAttribute="trailing" id="iow-fL-05L"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="46Q-ha-gTh"/>
+                    <navigationItem key="navigationItem" id="46Q-ha-gTh">
+                        <barButtonItem key="rightBarButtonItem" image="a" id="Fxb-SJ-3mi">
+                            <connections>
+                                <action selector="typeChange:" destination="Bwi-M9-Sx5" id="Qth-TB-O0I"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="context_TV" destination="l6H-7Q-Q3v" id="8BS-XP-7is"/>
                         <segue destination="yb0-BD-vgo" kind="push" identifier="image" id="9yD-zd-cd4"/>
@@ -156,4 +162,7 @@
             <point key="canvasLocation" x="-172" y="98.50074962518741"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="a" width="19" height="21"/>
+    </resources>
 </document>
