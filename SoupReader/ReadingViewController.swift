@@ -13,6 +13,8 @@ import SafariServices
 class ReadingViewController: UIViewController, UITextViewDelegate {
     let imageIdentity = "image"
     
+    let popSegue = "popSegue"
+    
     @IBOutlet weak var context_TV: UITextView!
     
     @IBAction func typeChange(_ sender: Any) {
@@ -22,6 +24,14 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
     var readContexts: Array<ReadContext> = []
     
     let likeImage = UIImage(named: "like")!
+    
+    var h1_font: CGFloat = 28.0
+    
+    var h2_font: CGFloat = 20.0
+    
+    var h3_font: CGFloat = 18.0
+    
+    var p_font: CGFloat = 16.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +80,7 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
             self.context_TV.attributedText = attriStr
         })
     }
+    
     
     func loadHtml(url: String){
         let httpClient = HttpClient()
@@ -365,15 +376,15 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
             
             switch readContext.contextTag {
             case .h1:
-                let h1AttriStr = NSAttributedString(string:readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 28)])
+                let h1AttriStr = NSAttributedString(string:readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: self.h1_font)])
                 attriStr.append(h1AttriStr)
                 break
             case .h2:
-                let h2AttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 20)])
+                let h2AttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: self.h2_font)])
                 attriStr.append(h2AttriStr)
                 break
             case .h3:
-                let h3AttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18)])
+                let h3AttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: self.h3_font)])
                 attriStr.append(h3AttriStr)
                 break
             case .h4:
@@ -393,7 +404,7 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
                 self.setupTextAndLinks(readContext: readContext, attriStr: attriStr)
                 break
             case .blockquote:
-                let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSForegroundColorAttributeName: UIColor.init(hex: "#D22115"),NSFontAttributeName: UIFont.systemFont(ofSize: 16)])
+                let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSForegroundColorAttributeName: UIColor.init(hex: "#D22115"),NSFontAttributeName: UIFont.systemFont(ofSize: self.p_font)])
                 attriStr.append(pAttriStr)
                 break
             case .figure:
@@ -411,11 +422,11 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
             }
         }
         
-        let imgAttachment = NSTextAttachment()
-        imgAttachment.image = likeImage
-        
-        imgAttachment.bounds = CGRect(x: 0, y: 0, width: (imgAttachment.image?.size.width)! / 3, height: (imgAttachment.image?.size.height)! / 3)
-        attriStr.insert(NSAttributedString.init(attachment: imgAttachment), at: attriStr.length)
+//        let imgAttachment = NSTextAttachment()
+//        imgAttachment.image = likeImage
+//        
+//        imgAttachment.bounds = CGRect(x: 0, y: 0, width: (imgAttachment.image?.size.width)! / 3, height: (imgAttachment.image?.size.height)! / 3)
+//        attriStr.insert(NSAttributedString.init(attachment: imgAttachment), at: attriStr.length)
         
         self.context_TV.attributedText = attriStr
     }
@@ -426,27 +437,27 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
         
         switch readContext.contextTag {
         case .h1:
-            font = UIFont.boldSystemFont(ofSize: 28)
+            font = UIFont.boldSystemFont(ofSize: self.h1_font)
             break
         case .h2:
-            font = UIFont.boldSystemFont(ofSize: 20)
+            font = UIFont.boldSystemFont(ofSize: self.h2_font)
             break
         case .h3:
-            font = UIFont.boldSystemFont(ofSize: 18)
+            font = UIFont.boldSystemFont(ofSize: self.h3_font)
             break
         case .p:
-            font = UIFont.systemFont(ofSize: 16)
+            font = UIFont.systemFont(ofSize: self.p_font)
             if readContext.contextStyle == .strong{
-                font = UIFont.boldSystemFont(ofSize: 16)
+                font = UIFont.boldSystemFont(ofSize: self.p_font)
             }
             break
         case .blockquote:
-            font = UIFont.systemFont(ofSize: 16)
+            font = UIFont.systemFont(ofSize: self.p_font)
             break
         case .li:
-            font = UIFont.systemFont(ofSize: 16)
+            font = UIFont.systemFont(ofSize: self.p_font)
             if readContext.contextStyle == .strong{
-                font = UIFont.boldSystemFont(ofSize: 16)
+                font = UIFont.boldSystemFont(ofSize: self.p_font)
             }
             break
         default:
@@ -555,7 +566,20 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
             }
             
             
+        }else if segue.identifier == popSegue {
+            
+            let changeViewController = segue.destination as! ChangeViewController
+            changeViewController.image = imageViewWithView()
         }
+    }
+    
+    func imageViewWithView() -> UIImage{
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        self.view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndPDFContext()
+        
+        return image!
     }
     
     

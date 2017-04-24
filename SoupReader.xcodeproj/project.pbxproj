@@ -34,6 +34,7 @@
 		046D42CB1E9F1ED000624E77 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42CA1E9F1ED000624E77 /* SettingTableViewController.swift */; };
 		046D42CD1E9F5FD200624E77 /* ReadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42CC1E9F5FD200624E77 /* ReadingViewController.swift */; };
 		046D42CF1E9F7B4B00624E77 /* ReadContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D42CE1E9F7B4B00624E77 /* ReadContext.swift */; };
+		04EEEA131EADE2CC005ADFAF /* ChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EEEA121EADE2CC005ADFAF /* ChangeViewController.swift */; };
 		954FE5B9E6C717120F61F128 /* Pods_SoupReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 911F5F90788B3EB3A0677EC4 /* Pods_SoupReader.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +93,7 @@
 		046D42CA1E9F1ED000624E77 /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		046D42CC1E9F5FD200624E77 /* ReadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingViewController.swift; sourceTree = "<group>"; };
 		046D42CE1E9F7B4B00624E77 /* ReadContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadContext.swift; sourceTree = "<group>"; };
+		04EEEA121EADE2CC005ADFAF /* ChangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeViewController.swift; sourceTree = "<group>"; };
 		4F4498E3B7CD38B5BAA17598 /* Pods-SoupReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoupReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoupReader/Pods-SoupReader.debug.xcconfig"; sourceTree = "<group>"; };
 		911F5F90788B3EB3A0677EC4 /* Pods_SoupReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoupReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E329E4E24812A6BFD1D99A82 /* Pods-SoupReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoupReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoupReader/Pods-SoupReader.release.xcconfig"; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				046D42A71E9E0EB300624E77 /* BlogMainTableViewController.swift */,
 				046D42CC1E9F5FD200624E77 /* ReadingViewController.swift */,
 				045FB4EF1EAA01FB00D552AA /* ImageViewController.swift */,
+				04EEEA121EADE2CC005ADFAF /* ChangeViewController.swift */,
 			);
 			name = Blog;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				046D42A31E9E052700624E77 /* TagBean.swift in Sources */,
 				046D42631E9DCDC800624E77 /* ViewController.swift in Sources */,
 				046D42BF1E9E294D00624E77 /* XPathQuery.m in Sources */,
+				04EEEA131EADE2CC005ADFAF /* ChangeViewController.swift in Sources */,
 				046D42AB1E9E101700624E77 /* BlogMainTableViewCell.swift in Sources */,
 				046D42911E9DCFE800624E77 /* HttpClient.swift in Sources */,
 				046D429E1E9DD65D00624E77 /* StringExtension.swift in Sources */,
