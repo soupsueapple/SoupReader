@@ -407,14 +407,6 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
                 self.downlongImage(readContext: readContext, index: 0)
                 break
             case .p:
-//                var font = UIFont.systemFont(ofSize: 16)
-//                if readContext.contextStyle == .strong{
-//                    font = UIFont.boldSystemFont(ofSize: 16)
-//                }
-//                
-//                let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: font])
-//                attriStr.append(pAttriStr)
-                
                 self.setupTextAndLinks(readContext: readContext, attriStr: attriStr)
                 break
             case .blockquote:
@@ -425,9 +417,6 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
                 self.downlongImage(readContext: readContext, index: attriStr.length)
                 break
             case .li:
-//                let pAttriStr = NSAttributedString(string: "\(readContext.index). "+readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)])
-//                attriStr.append(pAttriStr)
-                
                 self.setupTextAndLinks(readContext: readContext, attriStr: attriStr)
                 break
             default:
@@ -435,12 +424,6 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
                 
             }
         }
-        
-//        let imgAttachment = NSTextAttachment()
-//        imgAttachment.image = likeImage
-//        
-//        imgAttachment.bounds = CGRect(x: 0, y: 0, width: (imgAttachment.image?.size.width)! / 3, height: (imgAttachment.image?.size.height)! / 3)
-//        attriStr.insert(NSAttributedString.init(attachment: imgAttachment), at: attriStr.length)
         
         self.context_TV.attributedText = attriStr
         
@@ -625,16 +608,5 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
