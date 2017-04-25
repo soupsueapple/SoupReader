@@ -1,19 +1,21 @@
 //
-//  SettingTableViewController.swift
+//  OtherInfoTableViewController.swift
 //  SoupReader
 //
-//  Created by 汤坤 on 2017/4/13.
+//  Created by 汤坤 on 2017/4/25.
 //  Copyright © 2017年 汤坤. All rights reserved.
 //
 
 import UIKit
-import StoreKit
+import SafariServices
 
-class SettingTableViewController: UITableViewController {
+class OtherInfoTableViewController: UITableViewController {
     
-    let setttingArr = ["第三方开源库","特别鸣谢 舒银女士"]
+    let OtherInfoIdentity = "OtherInfo"
     
-    let segueIdentity = "SettingSegue"
+    let openSource = ["AFNetworking", "Ono"]
+    
+    let openSourceLinks = ["https://github.com/AFNetworking/AFNetworking", "https://github.com/mattt/Ono"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,7 @@ class SettingTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-
+        self.title = "第三方开源库"
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,36 +43,27 @@ class SettingTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return setttingArr.count
+        return openSource.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "setting", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: OtherInfoIdentity, for: indexPath)
 
         // Configure the cell...
-        
-        let str = setttingArr[indexPath.row]
-        
-        cell.textLabel?.text = str
-        
-        if indexPath.row == 1{
-            cell.accessoryType = .none
-            cell.textLabel?.textColor = UIColor.red
-        }else{
-            cell.accessoryType = .disclosureIndicator
-            cell.textLabel?.textColor = UIColor.black
-        }
+        cell.textLabel?.text = openSource[indexPath.row]
 
         return cell
     }
- 
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0{
-            let settingStoryboard = UIStoryboard.init(name: "Setting", bundle: nil)
-            let otherInfoTableViewController = settingStoryboard.instantiateViewController(withIdentifier: "OtherInfo") as! OtherInfoTableViewController
-            self.navigationController?.pushViewController(otherInfoTableViewController, animated: true)
-        }
+        let safariViewController = SFSafariViewController(url: URL.init(string: openSourceLinks[indexPath.row])!, entersReaderIfAvailable: true)
+        
+        present(safariViewController, animated: true, completion: {() -> Void in
+            
+            
+            
+        })
     }
 
     /*

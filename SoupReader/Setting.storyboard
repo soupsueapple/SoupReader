@@ -12,17 +12,17 @@
         <!--Other-->
         <scene sceneID="FSt-Au-USL">
             <objects>
-                <tableViewController id="ZpB-qf-CbZ" sceneMemberID="viewController">
+                <tableViewController id="ZpB-qf-CbZ" customClass="SettingTableViewController" customModule="SoupReader" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="LHX-g7-Hsx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Vox-bu-Q64">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="setting" id="Vox-bu-Q64">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vox-bu-Q64" id="axf-H4-7jP">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -37,6 +37,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRX-qu-ICf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="812" y="262.21889055472263"/>
+        </scene>
+        <!--Other Info Table View Controller-->
+        <scene sceneID="EMD-Ir-Gcs">
+            <objects>
+                <tableViewController storyboardIdentifier="OtherInfo" id="w59-oQ-dsw" customClass="OtherInfoTableViewController" customModule="SoupReader" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0BP-63-CBx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="OtherInfo" id="9vZ-33-sX0">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9vZ-33-sX0" id="VxI-WU-1bZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="w59-oQ-dsw" id="LgM-jK-CQh"/>
+                            <outlet property="delegate" destination="w59-oQ-dsw" id="bgR-FF-knw"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="aZk-RU-wWu"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jgg-Cg-Xe3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1607" y="269"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gGC-VK-eEf">
