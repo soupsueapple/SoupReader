@@ -24,6 +24,35 @@ class ImageViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         imageView.image = imgae
+        
+        imageView.isUserInteractionEnabled = true
+        imageView.isMultipleTouchEnabled = true
+        
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(scaleImage(gesture:)))
+        imageView.addGestureRecognizer(pinchGesture)
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panImage(gesture:)))
+        imageView.addGestureRecognizer(panGesture)
+    }
+    
+    func scaleImage(gesture: UIPinchGestureRecognizer){
+        let state = gesture.state
+        
+        if state == .began || state == .changed{
+            let scale = gesture.scale
+            gesture.view?.transform = (gesture.view?.transform)!.scaledBy(x: scale, y: scale)
+            gesture.scale = 1.0
+        }
+    }
+    
+    func panImage(gesture: UIPanGestureRecognizer){
+        if gesture.state == .began || gesture.state == .changed{
+            
+            let view = gesture.view
+            let translation = gesture.translation(in: view?.superview)
+            view?.center = CGPoint(x: (view?.center.x)! + translation.x, y: (view?.center.y)! + translation.y)
+            gesture.setTranslation(CGPoint.zero, in: view?.superview)
+        }
     }
 
     override func didReceiveMemoryWarning() {

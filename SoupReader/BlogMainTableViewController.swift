@@ -178,20 +178,9 @@ class BlogMainTableViewController: UITableViewController, XMLParserDelegate{
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: false)
-//        
-//        let tag = tags[indexPath.row]
-//        let link = tag.link
-//        
-//        let safariViewController = SFSafariViewController(url: URL(string: link)!, entersReaderIfAvailable: true)
-//        
-//        present(safariViewController, animated: true, completion: {() -> Void in
-//            
-//            
-//            
-//        })
-//    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
     
 
     /*

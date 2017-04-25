@@ -56,7 +56,7 @@ class SettingTableViewController: UITableViewController {
         
         if indexPath.row == 1{
             cell.accessoryType = .none
-            cell.textLabel?.textColor = UIColor.red
+            cell.textLabel?.textColor = UIColor.init(hex: "#007AFF")
         }else{
             cell.accessoryType = .disclosureIndicator
             cell.textLabel?.textColor = UIColor.black

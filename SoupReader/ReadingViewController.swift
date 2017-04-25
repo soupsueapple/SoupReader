@@ -35,13 +35,13 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
     
     let likeImage = UIImage(named: "like")!
     
-    var h1_font: CGFloat = 28.0
+    var h1_font: CGFloat = 30.0
     
-    var h2_font: CGFloat = 20.0
+    var h2_font: CGFloat = 22.0
     
-    var h3_font: CGFloat = 18.0
+    var h3_font: CGFloat = 20.0
     
-    var p_font: CGFloat = 16.0
+    var p_font: CGFloat = 18.0
     
     var row = "\n\n"
     

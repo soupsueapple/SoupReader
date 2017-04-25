@@ -19,6 +19,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        HttpClient.shareInstance().requestSerializer.setAuthorizationHeaderFieldWithUsername("soupsue", password: "soup1226")
         return true
     }
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        
+        let mainStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let tabbarViewController: UITabBarController = mainStoryboard.instantiateViewController(withIdentifier: "Main") as! UITabBarController
+        window?.rootViewController = tabbarViewController
+        
+        
+        switch shortcutItem.localizedTitle {
+        case "Read":
+            tabbarViewController.selectedIndex = 0
+            break
+        case "Featured":
+            tabbarViewController.selectedIndex = 1
+            break
+        default:
+            break
+        }
+        
+        window?.makeKeyAndVisible()
+    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
