@@ -80,9 +80,8 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
             let imgAttachment = NSTextAttachment()
             imgAttachment.image = UIImage(data: data)
             
-            let width = (UIScreen.main.bounds.size.width - (imgAttachment.image?.size.width)! / 3) / 2
+            imgAttachment.bounds = CGRect(x: 0, y: 0, width: (imgAttachment.image?.size.width)! / 2, height: (imgAttachment.image?.size.height)! / 2)
             
-            imgAttachment.bounds = CGRect(x: width, y: 0, width: (imgAttachment.image?.size.width)! / 3, height: (imgAttachment.image?.size.height)! / 3)
             let attriStr = self.context_TV.attributedText.mutableCopy() as! NSMutableAttributedString
             attriStr.insert(NSAttributedString.init(attachment: imgAttachment), at: index)
             
