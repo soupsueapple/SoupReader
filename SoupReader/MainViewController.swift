@@ -22,9 +22,9 @@ class MainViewController: UITabBarController {
         let discoverNavigationViewController = sbDiscover.instantiateViewController(withIdentifier: "Discover") as! UINavigationController
         let settingNavigationViewController = sbSetting.instantiateViewController(withIdentifier: "Setting") as! UINavigationController
         
-        blogNavigationViewController.tabBarItem = UITabBarItem(title: "Blog", image: UIImage.init(named: "blog"), tag: 0)
+        blogNavigationViewController.tabBarItem = UITabBarItem(title: "Read", image: UIImage.init(named: "blog"), tag: 0)
         discoverNavigationViewController.tabBarItem = UITabBarItem(title: "Discover", image: UIImage.init(named: "favorite"), tag: 1)
-        settingNavigationViewController.tabBarItem = UITabBarItem(title: "Setting", image: UIImage.init(named: "setting"), tag: 2)
+        settingNavigationViewController.tabBarItem = UITabBarItem(title: "Other", image: UIImage.init(named: "setting"), tag: 2)
         
         self.viewControllers = [blogNavigationViewController, discoverNavigationViewController, settingNavigationViewController]
     }

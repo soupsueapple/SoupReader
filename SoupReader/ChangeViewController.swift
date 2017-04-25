@@ -8,21 +8,33 @@
 
 import UIKit
 
+public protocol ChangeViewControllerDelegate: NSObjectProtocol{
+    func changeTypeSizeToSmall() -> Void
+    func changeTypeSizeToBig() -> Void
+}
+
 class ChangeViewController: UIViewController {
     
-    @IBOutlet weak var bg_iv: UIImageView!
+    weak open var changeViewControllerDelegate: ChangeViewControllerDelegate?
     
     var image: UIImage?
     
     @IBAction func dismis(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
+    }
+    
+    @IBAction func changeTypeSizeToSmall(_ sender: Any) {
+        self.changeViewControllerDelegate?.changeTypeSizeToSmall()
+    }
+    
+    @IBAction func changeTypeSizeToBig(_ sender: Any) {
+        self.changeViewControllerDelegate?.changeTypeSizeToBig()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        bg_iv.image = image
     }
 
     override func didReceiveMemoryWarning() {

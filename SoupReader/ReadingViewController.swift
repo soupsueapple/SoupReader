@@ -10,14 +10,24 @@ import UIKit
 import Ono
 import SafariServices
 
-class ReadingViewController: UIViewController, UITextViewDelegate {
+class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewControllerDelegate{
     let imageIdentity = "image"
-    
-    let popSegue = "popSegue"
     
     @IBOutlet weak var context_TV: UITextView!
     
+    var changeViewController: ChangeViewController?
+    
     @IBAction func typeChange(_ sender: Any) {
+        
+
+        let blogStoryboard = UIStoryboard.init(name: "Blog", bundle: nil)
+        let changeViewController = blogStoryboard.instantiateViewController(withIdentifier: "Change") as! ChangeViewController
+        changeViewController.changeViewControllerDelegate = self
+        changeViewController.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        changeViewController.modalPresentationStyle = .overCurrentContext
+        changeViewController.modalTransitionStyle = .coverVertical
+        self.present(changeViewController, animated: false, completion: nil)
+
     }
     var tag = TagBean()
     
@@ -32,6 +42,8 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
     var h3_font: CGFloat = 18.0
     
     var p_font: CGFloat = 16.0
+    
+    var row = "\n\n"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +86,7 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
             let attriStr = self.context_TV.attributedText.mutableCopy() as! NSMutableAttributedString
             attriStr.insert(NSAttributedString.init(attachment: imgAttachment), at: index)
             
-            let label = NSAttributedString.init(string: "\n\n" + readContext.label + "\n\n")
+            let label = NSAttributedString.init(string: self.row + readContext.label + self.row)
             attriStr.insert(label, at: index + 1)
             
             self.context_TV.attributedText = attriStr
@@ -101,7 +113,9 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
     // MARK: HTMLParser
     func doHtmlRequest(data: Data) -> Void{
         
-//        let data = NSData(contentsOf: URL(string: url)!)
+        if self.readContexts.count > 0{
+            self.readContexts.removeAll()
+        }
         
         do{
             let doc = try ONOXMLDocument.htmlDocument(with: data as Data)
@@ -376,15 +390,15 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
             
             switch readContext.contextTag {
             case .h1:
-                let h1AttriStr = NSAttributedString(string:readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: self.h1_font)])
+                let h1AttriStr = NSAttributedString(string:readContext.context + self.row, attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: self.h1_font)])
                 attriStr.append(h1AttriStr)
                 break
             case .h2:
-                let h2AttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: self.h2_font)])
+                let h2AttriStr = NSAttributedString(string: readContext.context + self.row, attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: self.h2_font)])
                 attriStr.append(h2AttriStr)
                 break
             case .h3:
-                let h3AttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: self.h3_font)])
+                let h3AttriStr = NSAttributedString(string: readContext.context + self.row, attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: self.h3_font)])
                 attriStr.append(h3AttriStr)
                 break
             case .h4:
@@ -404,7 +418,7 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
                 self.setupTextAndLinks(readContext: readContext, attriStr: attriStr)
                 break
             case .blockquote:
-                let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSForegroundColorAttributeName: UIColor.init(hex: "#D22115"),NSFontAttributeName: UIFont.systemFont(ofSize: self.p_font)])
+                let pAttriStr = NSAttributedString(string: readContext.context + self.row, attributes: [NSForegroundColorAttributeName: UIColor.init(hex: "#D22115"),NSFontAttributeName: UIFont.systemFont(ofSize: self.p_font)])
                 attriStr.append(pAttriStr)
                 break
             case .figure:
@@ -429,6 +443,8 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
 //        attriStr.insert(NSAttributedString.init(attachment: imgAttachment), at: attriStr.length)
         
         self.context_TV.attributedText = attriStr
+        
+        
     }
     
     func setupTextAndLinks(readContext: ReadContext, attriStr: NSMutableAttributedString){
@@ -488,7 +504,7 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
                 }
                 
                 if index == count{
-                    str += "\n\n"
+                    str += self.row
                 }
                 
                 for dic in readContext.contexts{
@@ -515,14 +531,12 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
             }
             
         }else{
-            let pAttriStr = NSAttributedString(string: readContext.context + "\n\n", attributes: [NSFontAttributeName: font])
+            let pAttriStr = NSAttributedString(string: readContext.context + self.row, attributes: [NSFontAttributeName: font])
             attriStr.append(pAttriStr)
         }
         
         
         self.context_TV.attributedText = attriStr
-        
-        
     }
     
     // MARK: UITextViewDelegate
@@ -566,23 +580,46 @@ class ReadingViewController: UIViewController, UITextViewDelegate {
             }
             
             
-        }else if segue.identifier == popSegue {
-            
-            let changeViewController = segue.destination as! ChangeViewController
-            changeViewController.image = imageViewWithView()
         }
     }
     
+    // MARK: 截图
     func imageViewWithView() -> UIImage{
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        self.view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: true)
+        let screenWindow = UIApplication.shared.keyWindow
+        
+        UIGraphicsBeginImageContextWithOptions((screenWindow?.frame.size)!, false, UIScreen.main.scale)
+        screenWindow?.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndPDFContext()
         
         return image!
     }
     
+    // MARK: ChangeViewControllerDelegate
     
+    func changeTypeSizeToSmall() {
+        
+        if(self.p_font > 10){
+            
+            self.h1_font -= 2.0
+            self.h2_font -= 2.0
+            self.h3_font -= 2.0
+            self.p_font -= 2.0
+            
+            contextOnTextView()
+            
+            
+        }
+    }
+    
+    func changeTypeSizeToBig() {
+        self.h1_font += 2.0
+        self.h2_font += 2.0
+        self.h3_font += 2.0
+        self.p_font += 2.0
+        
+        contextOnTextView()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
