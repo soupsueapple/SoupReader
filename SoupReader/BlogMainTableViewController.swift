@@ -38,6 +38,8 @@ class BlogMainTableViewController: UITableViewController, XMLParserDelegate{
         self.tableView.estimatedRowHeight = 44
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(BlogMainTableViewController.refreshTable), for: .valueChanged)
         self.refreshControl = refreshControl
