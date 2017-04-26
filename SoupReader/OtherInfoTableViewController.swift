@@ -28,6 +28,10 @@ class OtherInfoTableViewController: UITableViewController {
         
         self.title = "第三方开源库与免费图库"
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true;
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
