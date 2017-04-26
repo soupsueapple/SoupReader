@@ -75,8 +75,6 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
             
             let data = any as! Data
             
-            
-            
             let imgAttachment = NSTextAttachment()
             imgAttachment.image = UIImage(data: data)
             
@@ -84,9 +82,6 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
             
             let attriStr = self.context_TV.attributedText.mutableCopy() as! NSMutableAttributedString
             attriStr.insert(NSAttributedString.init(attachment: imgAttachment), at: index)
-            
-            let label = NSAttributedString.init(string: self.row + readContext.label + self.row)
-            attriStr.insert(label, at: index + 1)
             
             self.context_TV.attributedText = attriStr
         })
@@ -403,6 +398,8 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
             case .h4:
                 break
             case .thumbnail:
+                let label = NSAttributedString.init(string: self.row)
+                attriStr.append(label)
                 self.downlongImage(readContext: readContext, index: 0)
                 break
             case .p:
@@ -413,7 +410,11 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
                 attriStr.append(pAttriStr)
                 break
             case .figure:
+                let row = NSAttributedString.init(string: self.row)
+                attriStr.append(row)
                 self.downlongImage(readContext: readContext, index: attriStr.length)
+                let label = NSAttributedString.init(string: readContext.label + self.row)
+                attriStr.append(label)
                 break
             case .li:
                 self.setupTextAndLinks(readContext: readContext, attriStr: attriStr)
