@@ -37,12 +37,12 @@ class SettingTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return setttingArr.count
+        return 1
     }
 
     
@@ -51,23 +51,31 @@ class SettingTableViewController: UITableViewController {
 
         // Configure the cell...
         
-        let str = setttingArr[indexPath.row]
         
-        cell.textLabel?.text = str
         
-        if indexPath.row == 1{
+        if indexPath.section == 1{
             cell.accessoryType = .none
             cell.textLabel?.textColor = UIColor.init(hex: "#007AFF")
+            
+            let str = setttingArr[1]
+            
+            cell.textLabel?.text = str
         }else{
             cell.accessoryType = .disclosureIndicator
             cell.textLabel?.textColor = UIColor.black
+            
+            let str = setttingArr[0]
+            
+            cell.textLabel?.text = str
         }
 
         return cell
     }
  
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0{
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        if indexPath.section == 0{
             let settingStoryboard = UIStoryboard.init(name: "Setting", bundle: nil)
             let otherInfoTableViewController = settingStoryboard.instantiateViewController(withIdentifier: "OtherInfo") as! OtherInfoTableViewController
             self.navigationController?.pushViewController(otherInfoTableViewController, animated: true)

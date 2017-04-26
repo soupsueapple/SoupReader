@@ -13,9 +13,9 @@ class OtherInfoTableViewController: UITableViewController {
     
     let OtherInfoIdentity = "OtherInfo"
     
-    let openSource = ["AFNetworking", "Ono"]
+    let openSource = ["AFNetworking", "Ono", "Sketchactive"]
     
-    let openSourceLinks = ["https://github.com/AFNetworking/AFNetworking", "https://github.com/mattt/Ono"]
+    let openSourceLinks = ["https://github.com/AFNetworking/AFNetworking", "https://github.com/mattt/Ono", "http://aegeank.com/sketchactive/"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class OtherInfoTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        self.title = "第三方开源库"
+        self.title = "第三方开源库与免费图库"
     }
 
     override func didReceiveMemoryWarning() {

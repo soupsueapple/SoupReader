@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--SoupReader-->
+        <!--Blog-->
         <scene sceneID="eiJ-nx-tSm">
             <objects>
                 <tableViewController id="UgW-QH-A1V" customClass="BlogMainTableViewController" customModule="SoupReader" customModuleProvider="target" sceneMemberID="viewController">
@@ -61,7 +61,7 @@
                             <outlet property="delegate" destination="UgW-QH-A1V" id="nN8-6d-CGg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="SoupReader" id="pgl-Wd-X4U"/>
+                    <navigationItem key="navigationItem" title="Blog" id="pgl-Wd-X4U"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xxn-le-PGz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
