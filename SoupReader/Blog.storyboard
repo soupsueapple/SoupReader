@@ -19,21 +19,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BlogMainCell" id="5DP-Do-5yy" customClass="BlogMainTableViewCell" customModule="SoupReader" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BlogMainCell" id="5DP-Do-5yy" customClass="BlogMainTableViewCell" customModule="SoupReader" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5DP-Do-5yy" id="Cti-ak-7G8">
-                                    <rect key="frame" x="0.0" y="0.0" width="381" height="63"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="63"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yf-oG-OKm">
-                                            <rect key="frame" x="8" y="8" width="365" height="15.666666666666668"/>
+                                            <rect key="frame" x="8" y="8" width="398" height="15.666666666666668"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="digest" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1E-3H-QdK">
-                                            <rect key="frame" x="8" y="34.666666666666657" width="365" height="20.333333333333336"/>
+                                            <rect key="frame" x="8" y="34.666666666666657" width="398" height="20.333333333333336"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -70,7 +70,7 @@
         <!--Reading View Controller-->
         <scene sceneID="2u1-nu-ltW">
             <objects>
-                <viewController providesPresentationContextTransitionStyle="YES" modalPresentationStyle="currentContext" id="Bwi-M9-Sx5" customClass="ReadingViewController" customModule="SoupReader" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController providesPresentationContextTransitionStyle="YES" modalPresentationStyle="currentContext" hidesBottomBarWhenPushed="YES" id="Bwi-M9-Sx5" customClass="ReadingViewController" customModule="SoupReader" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EYO-gF-oFN"/>
                         <viewControllerLayoutGuide type="bottom" id="rIX-yb-2Xv"/>
@@ -218,10 +218,10 @@
             </objects>
             <point key="canvasLocation" x="2996" y="112"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation View Controller-->
         <scene sceneID="eO4-21-1ca">
             <objects>
-                <navigationController storyboardIdentifier="Blog" automaticallyAdjustsScrollViewInsets="NO" id="4Ce-Cw-Lh5" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Blog" automaticallyAdjustsScrollViewInsets="NO" id="4Ce-Cw-Lh5" customClass="SGLNavigationViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qAx-Kp-nwg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

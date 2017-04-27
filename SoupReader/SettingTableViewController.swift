@@ -27,10 +27,6 @@ class SettingTableViewController: UITableViewController {
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
 
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false;
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

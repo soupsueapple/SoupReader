@@ -41,7 +41,7 @@
         <!--Other Info Table View Controller-->
         <scene sceneID="EMD-Ir-Gcs">
             <objects>
-                <tableViewController storyboardIdentifier="OtherInfo" id="w59-oQ-dsw" customClass="OtherInfoTableViewController" customModule="SoupReader" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="OtherInfo" hidesBottomBarWhenPushed="YES" id="w59-oQ-dsw" customClass="OtherInfoTableViewController" customModule="SoupReader" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0BP-63-CBx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -67,10 +67,10 @@
             </objects>
             <point key="canvasLocation" x="1607" y="269"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation View Controller-->
         <scene sceneID="gGC-VK-eEf">
             <objects>
-                <navigationController storyboardIdentifier="Setting" automaticallyAdjustsScrollViewInsets="NO" id="Q5c-qa-Idm" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Setting" automaticallyAdjustsScrollViewInsets="NO" id="Q5c-qa-Idm" customClass="SGLNavigationViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7tP-gY-N2R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

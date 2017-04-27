@@ -7,7 +7,7 @@
 //
 #import <AFNetworking/AFNetworking.h>
 #import <Ono/Ono.h>
-
+#import "SGLNavigationViewController.h"
 #import "XPathQuery.h"
 #import "TFHppleElement.h"
 #import "TFHpple.h"

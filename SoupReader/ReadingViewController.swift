@@ -58,10 +58,6 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true;
-    }
-    
     // MARK: download image
     func downlongImage(readContext: ReadContext, index: Int) -> Void{
         let httpClient = HttpClient()

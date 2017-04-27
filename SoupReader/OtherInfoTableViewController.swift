@@ -13,9 +13,9 @@ class OtherInfoTableViewController: UITableViewController {
     
     let OtherInfoIdentity = "OtherInfo"
     
-    let openSource = ["AFNetworking", "Ono", "Sketchactive"]
+    let openSource = ["AFNetworking", "Ono", "SGLNavigationViewController", "Sketchactive"]
     
-    let openSourceLinks = ["https://github.com/AFNetworking/AFNetworking", "https://github.com/mattt/Ono", "http://aegeank.com/sketchactive/"]
+    let openSourceLinks = ["https://github.com/AFNetworking/AFNetworking", "https://github.com/mattt/Ono", "https://github.com/Mrshang110/SGLFullScreenNavigationController", "http://aegeank.com/sketchactive/"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +27,6 @@ class OtherInfoTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.title = "第三方开源库与免费图库"
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true;
     }
 
     override func didReceiveMemoryWarning() {

@@ -142,19 +142,11 @@ class BlogMainTableViewController: UITableViewController, XMLParserDelegate{
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
     }
-    
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false;
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
 
     // MARK: - Table view data source
 
