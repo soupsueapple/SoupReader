@@ -167,7 +167,7 @@ class BlogMainTableViewController: UITableViewController, XMLParserDelegate{
         let tag = tags[indexPath.row]
         
         cell.title_lb.text = tag.title
-        cell.digest_lb.text = tag.descriptions
+        cell.digest_lb.text = tag.descriptions.replacingOccurrences(of: "<blockquote>", with: "").replacingOccurrences(of: "</blockquote>", with: "")
 
         return cell
     }
