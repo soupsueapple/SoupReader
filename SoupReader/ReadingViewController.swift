@@ -96,8 +96,12 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
             
             let data = any as! Data
             
-//            self.doHtmlRequest(data: data)
-            self.doHtmlRequestWithTyplog(data: data)
+            if url.contains("wordpress"){
+                self.doHtmlRequest(data: data)
+            }else{
+                self.doHtmlRequestWithTyplog(data: data)
+            }
+            
         })
     }
     
@@ -577,40 +581,38 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
                                 
                                 readContexts.append(readContext)
                             }
+                        }
+                        
+                        // 文字插图
+                        let figureElements = d.children(withTag: "figure")
+                        
+                        for (_, f) in (figureElements?.enumerated())!{
+                            let figure = f as! ONOXMLElement
+                            let imgElement = figure.firstChild(withTag: "img")
                             
+                            let file = imgElement?.value(forAttribute: "data-orig-file") as? String
+                            
+                            let readContext = ReadContext()
+                            
+                            if let img = file{
+                                
+                                readContext.context = img
+                                readContext.contextType = .img
+                                readContext.contextTag = .figure
+                                readContext.contextStyle = .normal
+                                readContext.lineNumber = (imgElement?.lineNumber)!
+                                readContexts.append(readContext)
+                            }
+                            
+                            let figcaptionElement = figure.firstChild(withTag: "figcaption")
+                            if let f = figcaptionElement{
+                                readContext.label = f.stringValue()
+                            }
                             
                             
                         }
                     }
                     
-                    // 文字插图
-                    let figureElements = d.children(withTag: "figure")
-                    
-                    for (_, f) in (figureElements?.enumerated())!{
-                        let figure = f as! ONOXMLElement
-                        let imgElement = figure.firstChild(withTag: "img")
-                        
-                        let file = imgElement?.value(forAttribute: "data-orig-file") as? String
-                        
-                        let readContext = ReadContext()
-                        
-                        if let img = file{
-                            
-                            readContext.context = img
-                            readContext.contextType = .img
-                            readContext.contextTag = .figure
-                            readContext.contextStyle = .normal
-                            readContext.lineNumber = (imgElement?.lineNumber)!
-                            readContexts.append(readContext)
-                        }
-                        
-                        let figcaptionElement = figure.firstChild(withTag: "figcaption")
-                        if let f = figcaptionElement{
-                            readContext.label = f.stringValue()
-                        }
-                        
-                        
-                    }
                 }
                 
                 
@@ -654,6 +656,8 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
                 self.setupTextAndLinks(readContext: readContext, attriStr: attriStr)
                 break
             case .blockquote:
+                let quoteStr = NSAttributedString(string: "“", attributes: [NSForegroundColorAttributeName: UIColor.init(hex: "#D22115"),NSFontAttributeName: UIFont.systemFont(ofSize: self.h1_font)])
+                attriStr.append(quoteStr)
                 let pAttriStr = NSAttributedString(string: readContext.context + self.row, attributes: [NSForegroundColorAttributeName: UIColor.init(hex: "#D22115"),NSFontAttributeName: UIFont.systemFont(ofSize: self.p_font)])
                 attriStr.append(pAttriStr)
                 break
