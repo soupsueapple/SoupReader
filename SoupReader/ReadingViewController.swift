@@ -96,8 +96,8 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
             
             let data = any as! Data
             
-            self.doHtmlRequest(data: data)
-//            self.doHtmlRequestWithTelegra(data: data)
+//            self.doHtmlRequest(data: data)
+            self.doHtmlRequestWithTyplog(data: data)
         })
     }
     
@@ -372,7 +372,7 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
         }
     }
     
-    func doHtmlRequestWithTelegra(data: Data) -> Void{
+    func doHtmlRequestWithTyplog(data: Data) -> Void{
         
         if self.readContexts.count > 0{
             self.readContexts.removeAll()
@@ -381,145 +381,188 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
         do{
             let doc = try ONOXMLDocument.htmlDocument(with: data as Data)
             
-            let postsParentElement: ONOXMLElement? = doc.firstChild(withXPath: "/html/body/div[1]")
+            let postsParentElement: ONOXMLElement? = doc.firstChild(withXPath: "/html/body/article")
             
-            if let p = postsParentElement{
+            if let article = postsParentElement{
                 
-                for (_, element) in p.children.enumerated() {
-                    let e: ONOXMLElement = element as! ONOXMLElement
+                
+                
+//                let article: ONOXMLElement = element as! ONOXMLElement
+                
+                // 标题
+                let h1Element: ONOXMLElement? = article.firstChild(withXPath: "/html/body/article/h1")
+                
+                if let h1 = h1Element{
                     
-                    let articleElement = e.firstChild(withTag: "main")
+                    let readContext = ReadContext()
+                    readContext.context = h1.stringValue()
+                    readContext.contextType = .text
+                    readContext.contextTag = .h1
+                    readContext.contextStyle = .normal
+                    readContext.lineNumber = h1.lineNumber
+                    readContexts.append(readContext)
                     
-                    if let article = articleElement{
+                }
+                // 封面
+                let divs = article.children(withTag: "div")
+                
+                
+                for (_, div) in (divs?.enumerated())!{
+                    
+                    let d = div as! ONOXMLElement
+                    let imgElement = d.firstChild(withTag: "img")
+                    
+                    let file = imgElement?.value(forAttribute: "data-orig-file") as? String
+                    
+                    let readContext = ReadContext()
+                    
+                    if let img = file{
                         
+                        readContext.context = img
+                        readContext.contextType = .img
+                        readContext.contextTag = .thumbnail
+                        readContext.contextStyle = .normal
+                        readContext.lineNumber = (imgElement?.lineNumber)!
+                        readContexts.append(readContext)
+                    }
+                    
+                    
+                    // 副标题
+                    let h2Elements = d.children(withTag: "h2")
+                    
+                    for (_, h2) in (h2Elements?.enumerated())!{
+                        let h = h2 as! ONOXMLElement
                         
-                        // 文章头
-                        let headerElement = article.firstChild(withTag: "header")
+                        let readContext = ReadContext()
+                        readContext.context = h.stringValue()
+                        readContext.contextType = .text
+                        readContext.contextTag = .h2
+                        readContext.contextStyle = .normal
+                        readContext.lineNumber = h.lineNumber
+                        readContexts.append(readContext)
+                    }
+                    
+                    let h3Elements = d.children(withTag: "h3")
+                    
+                    for (_, h3) in (h3Elements?.enumerated())!{
+                        let h = h3 as! ONOXMLElement
                         
-                        if let header = headerElement{
-                            print(header.stringValue())
-                            // 封面
-                            let divs = header.children(withTag: "div")
-                            
-                            for (_, div) in (divs?.enumerated())!{
-                                
-                                let d = div as! ONOXMLElement
-                                let imgElement = d.firstChild(withTag: "img")
-                                
-                                let file = imgElement?.value(forAttribute: "data-orig-file") as? String
-                                
-                                let readContext = ReadContext()
-                                
-                                if let img = file{
-                                    
-                                    readContext.context = img
-                                    readContext.contextType = .img
-                                    readContext.contextTag = .thumbnail
-                                    readContext.contextStyle = .normal
-                                    readContext.lineNumber = (imgElement?.lineNumber)!
-                                    readContexts.append(readContext)
-                                }
+                        let readContext = ReadContext()
+                        readContext.context = h.stringValue()
+                        readContext.contextType = .text
+                        readContext.contextTag = .h3
+                        readContext.contextStyle = .normal
+                        readContext.lineNumber = h.lineNumber
+                        readContexts.append(readContext)
+                    }
+                    
+                    let h4Elements = d.children(withTag: "h4")
+                    
+                    for (_, h4) in (h4Elements?.enumerated())!{
+                        let h = h4 as! ONOXMLElement
+                        
+                        let readContext = ReadContext()
+                        readContext.context = h.stringValue()
+                        readContext.contextType = .text
+                        readContext.contextTag = .h4
+                        readContext.contextStyle = .normal
+                        readContext.lineNumber = h.lineNumber
+                        readContexts.append(readContext)
+                    }
+                    
+                    let h5Elements = d.children(withTag: "h5")
+                    
+                    for (_, h5) in (h5Elements?.enumerated())!{
+                        let h = h5 as! ONOXMLElement
+                        
+                        let readContext = ReadContext()
+                        readContext.context = h.stringValue()
+                        readContext.contextType = .text
+                        readContext.contextTag = .h5
+                        readContext.contextStyle = .normal
+                        readContext.lineNumber = h.lineNumber
+                        readContexts.append(readContext)
+                    }
+                    
+                    // 文字
+                    let pElements = d.children(withTag: "p")
+                    
+                    for (_, pElement) in (pElements?.enumerated())!{
+                        let p = pElement as! ONOXMLElement
+                        
+                        let readContext = ReadContext()
+                        readContext.context = p.stringValue()
+                        readContext.contextType = .text
+                        readContext.contextTag = .p
+                        readContext.contextStyle = .normal
+                        
+                        let strongs = p.children(withTag: "strong")
+                        
+                        for (_, strong) in (strongs?.enumerated())!{
+                            let s = strong as! ONOXMLElement
+                            if s.stringValue() == readContext.context{
+                                readContext.contextStyle = .strong
                             }
-                            
-                            // 标题
-                            let h1Elements = header.children(withTag: "h1")
-                            
-                            for (_, h1Element) in (h1Elements?.enumerated())!{
-                                
-                                let h1 = h1Element as! ONOXMLElement
-                                
-                                let readContext = ReadContext()
-                                readContext.context = h1.stringValue()
-                                readContext.contextType = .text
-                                readContext.contextTag = .h1
-                                readContext.contextStyle = .normal
-                                readContext.lineNumber = h1.lineNumber
-                                readContexts.append(readContext)
-                            }
-                            
                         }
                         
-                        // 正文
-                        if let d = article.firstChild(withTag: "article"){
-                            // 副标题
-                            let h2Elements = d.children(withTag: "h2")
+                        let aHrefs = p.children(withTag: "a")
+                        
+                        var contexts: Array<Dictionary<String, String>> = []
+                        
+                        for (_,aHref) in (aHrefs?.enumerated())!{
+                            let a = aHref as! ONOXMLElement
+                            let href = a.value(forAttribute: "href") as! String
+                            let dic = ["href": href, "string": a.stringValue()]
+                            contexts.append(dic as! [String : String])
+                        }
+                        
+                        readContext.contexts = contexts
+                        readContext.lineNumber = p.lineNumber
+                        readContexts.append(readContext)
+                    }
+                    
+                    // 引用文字
+                    let divs = d.children(withTag: "div")
+                    for (_, div) in (divs?.enumerated())!{
+                        let d = div as! ONOXMLElement
+                        
+                        let blockquotes = d.children(withTag: "blockquote")
+                        
+                        for (_, blockquote) in (blockquotes?.enumerated())!{
+                            let b = blockquote as! ONOXMLElement
                             
-                            for (_, h2) in (h2Elements?.enumerated())!{
-                                let h = h2 as! ONOXMLElement
+                            let readContext = ReadContext()
+                            readContext.context = b.stringValue()
+                            readContext.contextType = .text
+                            readContext.contextTag = .blockquote
+                            readContext.lineNumber = b.lineNumber
+                            readContexts.append(readContext)
+                        }
+                        
+                        // list
+                        let ol = d.children(withTag: "ol")
+                        
+                        for (_, li) in (ol?.enumerated())!{
+                            
+                            
+                            
+                            let list = li as! ONOXMLElement
+                            
+                            let ls = list.children(withTag: "li")
+                            
+                            for (index, l1) in (ls?.enumerated())!{
+                                
+                                let l = l1 as! ONOXMLElement
                                 
                                 let readContext = ReadContext()
-                                readContext.context = h.stringValue()
+                                readContext.context = l.stringValue()
                                 readContext.contextType = .text
-                                readContext.contextTag = .h2
+                                readContext.contextTag = .li
                                 readContext.contextStyle = .normal
-                                readContext.lineNumber = h.lineNumber
-                                readContexts.append(readContext)
-                            }
-                            
-                            let h3Elements = d.children(withTag: "h3")
-                            
-                            for (_, h3) in (h3Elements?.enumerated())!{
-                                let h = h3 as! ONOXMLElement
+                                readContext.index = index + 1
+                                readContext.lineNumber = l.lineNumber
                                 
-                                let readContext = ReadContext()
-                                readContext.context = h.stringValue()
-                                readContext.contextType = .text
-                                readContext.contextTag = .h3
-                                readContext.contextStyle = .normal
-                                readContext.lineNumber = h.lineNumber
-                                readContexts.append(readContext)
-                            }
-                            
-                            let h4Elements = d.children(withTag: "h4")
-                            
-                            for (_, h4) in (h4Elements?.enumerated())!{
-                                let h = h4 as! ONOXMLElement
-                                
-                                let readContext = ReadContext()
-                                readContext.context = h.stringValue()
-                                readContext.contextType = .text
-                                readContext.contextTag = .h4
-                                readContext.contextStyle = .normal
-                                readContext.lineNumber = h.lineNumber
-                                readContexts.append(readContext)
-                            }
-                            
-                            let h5Elements = d.children(withTag: "h5")
-                            
-                            for (_, h5) in (h5Elements?.enumerated())!{
-                                let h = h5 as! ONOXMLElement
-                                
-                                let readContext = ReadContext()
-                                readContext.context = h.stringValue()
-                                readContext.contextType = .text
-                                readContext.contextTag = .h5
-                                readContext.contextStyle = .normal
-                                readContext.lineNumber = h.lineNumber
-                                readContexts.append(readContext)
-                            }
-                            
-                            // 文字
-                            let pElements = d.children(withTag: "p")
-                            
-                            for (_, pElement) in (pElements?.enumerated())!{
-                                let p = pElement as! ONOXMLElement
-                                
-                                let readContext = ReadContext()
-                                readContext.context = p.stringValue()
-                                readContext.contextType = .text
-                                readContext.contextTag = .p
-                                readContext.contextStyle = .normal
-                                
-                                let strongs = p.children(withTag: "strong")
-                                
-                                for (_, strong) in (strongs?.enumerated())!{
-                                    let s = strong as! ONOXMLElement
-                                    if s.stringValue() == readContext.context{
-                                        readContext.contextStyle = .strong
-                                    }
-                                }
-                                
-                                let aHrefs = p.children(withTag: "a")
+                                let aHrefs = l.children(withTag: "a")
                                 
                                 var contexts: Array<Dictionary<String, String>> = []
                                 
@@ -531,103 +574,43 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
                                 }
                                 
                                 readContext.contexts = contexts
-                                readContext.lineNumber = p.lineNumber
+                                
                                 readContexts.append(readContext)
                             }
                             
-                            // 引用文字
-                            let blockquotes = d.children(withTag: "blockquote")
                             
-                            for (_, blockquote) in (blockquotes?.enumerated())!{
-                                let b = blockquote as! ONOXMLElement
-                                
-                                let readContext = ReadContext()
-                                readContext.context = b.stringValue()
-                                readContext.contextType = .text
-                                readContext.contextTag = .blockquote
-                                readContext.lineNumber = b.lineNumber
-                                readContexts.append(readContext)
-                            }
                             
-                            // list
-                            let ol = d.children(withTag: "ol")
+                        }
+                    }
+                    
+                    // 文字插图
+                    let figureElements = d.children(withTag: "figure")
+                    
+                    for (_, f) in (figureElements?.enumerated())!{
+                        let figure = f as! ONOXMLElement
+                        let imgElement = figure.firstChild(withTag: "img")
+                        
+                        let file = imgElement?.value(forAttribute: "data-orig-file") as? String
+                        
+                        let readContext = ReadContext()
+                        
+                        if let img = file{
                             
-                            for (_, li) in (ol?.enumerated())!{
-                                
-                                
-                                
-                                let list = li as! ONOXMLElement
-                                
-                                let ls = list.children(withTag: "li")
-                                
-                                for (index, l1) in (ls?.enumerated())!{
-                                    
-                                    let l = l1 as! ONOXMLElement
-                                    
-                                    let readContext = ReadContext()
-                                    readContext.context = l.stringValue()
-                                    readContext.contextType = .text
-                                    readContext.contextTag = .li
-                                    readContext.contextStyle = .normal
-                                    readContext.index = index + 1
-                                    readContext.lineNumber = l.lineNumber
-                                    
-                                    let aHrefs = l.children(withTag: "a")
-                                    
-                                    var contexts: Array<Dictionary<String, String>> = []
-                                    
-                                    for (_,aHref) in (aHrefs?.enumerated())!{
-                                        let a = aHref as! ONOXMLElement
-                                        let href = a.value(forAttribute: "href") as! String
-                                        let dic = ["href": href, "string": a.stringValue()]
-                                        contexts.append(dic as! [String : String])
-                                    }
-                                    
-                                    readContext.contexts = contexts
-                                    
-                                    readContexts.append(readContext)
-                                }
-                                
-                                
-                                
-                            }
-                            
-                            // 文字插图
-                            let figureElements = d.children(withTag: "figure")
-                            
-                            for (_, f) in (figureElements?.enumerated())!{
-                                let figure = f as! ONOXMLElement
-                                let imgElement = figure.firstChild(withTag: "img")
-                                
-                                let file = imgElement?.value(forAttribute: "src") as? String
-                                
-                                let readContext = ReadContext()
-                                
-                                if let img = file{
-                                    
-                                    readContext.context = img
-                                    readContext.contextType = .img
-                                    readContext.contextTag = .figure
-                                    readContext.contextStyle = .normal
-                                    readContext.lineNumber = (imgElement?.lineNumber)!
-                                    readContexts.append(readContext)
-                                }
-                                
-                                let figcaptionElement = figure.firstChild(withTag: "figcaption")
-                                if let f = figcaptionElement{
-                                    readContext.label = f.stringValue()
-                                }
-                                
-                                
-                            }
+                            readContext.context = img
+                            readContext.contextType = .img
+                            readContext.contextTag = .figure
+                            readContext.contextStyle = .normal
+                            readContext.lineNumber = (imgElement?.lineNumber)!
+                            readContexts.append(readContext)
+                        }
+                        
+                        let figcaptionElement = figure.firstChild(withTag: "figcaption")
+                        if let f = figcaptionElement{
+                            readContext.label = f.stringValue()
                         }
                         
                         
-                        
-                        
                     }
-                    
-                    
                 }
                 
                 
