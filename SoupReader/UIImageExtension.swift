@@ -12,7 +12,7 @@ extension UIImage{
     
     func imageByScalingToSize(targetSize: CGSize) -> UIImage{
         
-        var sourceImage = self;
+        let sourceImage = self;
         var newImage: UIImage!
         
         let imageSize = sourceImage.size
