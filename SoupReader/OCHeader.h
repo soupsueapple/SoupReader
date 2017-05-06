@@ -11,6 +11,7 @@
 #import "XPathQuery.h"
 #import "TFHppleElement.h"
 #import "TFHpple.h"
+#import "UIImage+UIImageExtras.h"
 
 #ifndef OCHeader_h
 #define OCHeader_h

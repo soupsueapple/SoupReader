@@ -72,9 +72,11 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
             let data = any as! Data
             
             let imgAttachment = NSTextAttachment()
-            imgAttachment.image = UIImage(data: data)
+            let image = UIImage(data: data)
+            let size = image?.size
+            imgAttachment.image = image?.imageByScalingToSize(targetSize: CGSize.init(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.width * ((size?.height)! / (size?.width)!)))
             
-            imgAttachment.bounds = CGRect(x: 0, y: 0, width: (imgAttachment.image?.size.width)! / 2, height: (imgAttachment.image?.size.height)! / 2)
+//            imgAttachment.bounds = CGRect(x: 0, y: 0, width: (imgAttachment.image?.size.width)! / 2, height: (imgAttachment.image?.size.height)! / 2)
             
             let attriStr = self.context_TV.attributedText.mutableCopy() as! NSMutableAttributedString
             attriStr.insert(NSAttributedString.init(attachment: imgAttachment), at: index)
@@ -414,20 +416,27 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
                 for (_, div) in (divs?.enumerated())!{
                     
                     let d = div as! ONOXMLElement
-                    let imgElement = d.firstChild(withTag: "img")
                     
-                    let file = imgElement?.value(forAttribute: "data-orig-file") as? String
+                    let classStr = d.value(forAttribute: "class") as? String
                     
-                    let readContext = ReadContext()
-                    
-                    if let img = file{
-                        
-                        readContext.context = img
-                        readContext.contextType = .img
-                        readContext.contextTag = .thumbnail
-                        readContext.contextStyle = .normal
-                        readContext.lineNumber = (imgElement?.lineNumber)!
-                        readContexts.append(readContext)
+                    if let c = classStr{
+                        if c == "entry-cover"{
+                            
+                            let styleStr = d.value(forAttribute: "style") as? String
+                            
+                            if let style = styleStr{
+                                
+                                let readContext = ReadContext()
+                                readContext.context = style.replacingOccurrences(of: "background-image:url(", with: "").replacingOccurrences(of: ")", with: "")
+                                readContext.contextType = .img
+                                readContext.contextTag = .thumbnail
+                                readContext.contextStyle = .normal
+                                readContext.lineNumber = d.lineNumber
+                                readContexts.append(readContext)
+                                
+                            }
+                            
+                        }
                     }
                     
                     
@@ -528,6 +537,7 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
                     // 引用文字
                     let divs = d.children(withTag: "div")
                     for (_, div) in (divs?.enumerated())!{
+                        
                         let d = div as! ONOXMLElement
                         
                         let blockquotes = d.children(withTag: "blockquote")
@@ -590,7 +600,7 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
                             let figure = f as! ONOXMLElement
                             let imgElement = figure.firstChild(withTag: "img")
                             
-                            let file = imgElement?.value(forAttribute: "data-orig-file") as? String
+                            let file = imgElement?.value(forAttribute: "data-src") as? String
                             
                             let readContext = ReadContext()
                             
@@ -606,7 +616,7 @@ class ReadingViewController: UIViewController, UITextViewDelegate, ChangeViewCon
                             
                             let figcaptionElement = figure.firstChild(withTag: "figcaption")
                             if let f = figcaptionElement{
-                                readContext.label = f.stringValue()
+                                readContext.label = "\n" + f.stringValue()
                             }
                             
                             
